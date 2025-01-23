@@ -14,9 +14,6 @@ const reviewQuestions = require('./chat_modules/reviewQuestions');
 // Configuração do dotenv
 require('dotenv').config();
 
-require('./chat_modules/reviewQuestions')();
-
-return;
 
 // Definição das opções do menu e suas funções correspondentes
 const menuOptions = [
@@ -28,6 +25,7 @@ const menuOptions = [
     { name: 'Competências e Habilidades', action: competencyAndSkills },
     { name: 'Encontrar Questões do ENEM', action: findQuestions },
     { name: 'Revisar Roteiro', action: reviewScript },
+    { name: 'Revisar Questões', action: reviewQuestions },
 ];
 // Função para exibir o banner inicial
 function exibirBanner() {
