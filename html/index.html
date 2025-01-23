@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise de Roteiro</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Podemos ajustar algumas classes se necessário */
+    /* Popup Overlay + Modal base */
+    .modal-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Cabeçalho fixo -->
+  <header class="w-full bg-white shadow-sm z-10">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">
+          Análise de Roteiro
+        </h1>
+      </div>
+      <div class="text-gray-500">
+        <span class="font-medium">Versão Beta</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="container mx-auto px-4 py-12 flex-1">
+    <!-- Título principal dinâmico -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-teal-700 mb-3" id="tituloExperimento">
+        Experimento Interativo
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8">
+      <!-- 1) Descrição do Experimento -->
+      <section id="descricaoExperimento" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <!-- Título da seção + botões -->
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-violet-700 flex items-center">
+            <!-- Ícone do "beaker" -->
+            <svg class="w-6 h-6 mr-2 text-violet-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.75 3v7.098c0 .343-.137.673-.381.916L8.25 11.996a3 3 0 00-.879 2.121v4.383a2.25 2.25 0 002.25 2.25h4.756a2.25 2.25 0 002.25-2.25v-4.383a3 3 0 00-.879-2.121l-1.119-1.119a1.293 1.293 0 01-.381-.916V3">
+              </path>
+            </svg>
+            Descrição do Experimento
+          </h3>
+
+          <!-- Botões ✨ e ✏️ -->
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('descricaoExperimento')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('descricaoExperimento')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <p class="text-gray-700" id="descricaoDoExperimento">...</p>
+      </section>
+
+      <!-- 2) Objetivo Geral -->
+      <section id="objetivoGeral" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-pink-700 flex items-center">
+            <!-- Ícone "flag" -->
+            <svg class="w-6 h-6 mr-2 text-pink-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18m0-13h13l-2-5 5 5-5 5 2 5H3" />
+            </svg>
+            Objetivo Geral
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('objetivoGeral')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('objetivoGeral')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <p class="text-gray-700" id="objetivoGeralText">...</p>
+      </section>
+
+      <!-- 3) Materiais Necessários -->
+      <section id="materiaisNecessarios" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-lime-700 flex items-center">
+            <!-- Ícone "clipboard" -->
+            <svg class="w-6 h-6 mr-2 text-lime-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 2.25c-.63 0-1.176.464-1.245 1.09L7.5 3.5v.75H6.75a2.25 2.25 0 00-2.244 2.04l-.006.21v12.5a2.25 2.25 0 002.04 2.244l.21.006h10.5a2.25 2.25 0 002.244-2.04l.006-.21v-12.5a2.25 2.25 0 00-2.04-2.244l-.21-.006H16.5V3.5l-.005-.16A1.25 1.25 0 0015.25 2.25H9z" />
+            </svg>
+            Materiais Necessários
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('materiaisNecessarios')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('materiaisNecessarios')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <ul class="list-disc list-inside text-gray-700 space-y-1" id="listaMateriais"></ul>
+      </section>
+
+      <!-- 4) Procedimentos -->
+      <section id="procedimentos" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-sky-700 flex items-center">
+            <!-- Ícone "cog" -->
+            <svg class="w-6 h-6 mr-2 text-sky-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.5 12a7.5 7.5 0 0114.995-.226 1.449 1.449 0 00.697.879l.077.04.595.298a2.25 2.25 0 011.11 2.32l-.014.1-.15 1.08a2.25 2.25 0 01-1.893 1.93l-.13.013-.897.06c-.497.033-.967.266-1.285.64l-.074.093-.54.668a2.25 2.25 0 01-2.976.494l-.094-.068-.955-.654a1.447 1.447 0 00-1.564 0l-.955.654a2.25 2.25 0 01-3.116-.562l-.06-.095-.54-.668a2.25 2.25 0 00-1.285-.64l-.129-.013-.898-.06a2.25 2.25 0 01-1.893-1.93l-.015-1.18a2.25 2.25 0 011.154-2.02l.135-.071.595-.298c.396-.199.682-.55.8-.969l.027-.104A7.504 7.504 0 014.5 12z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 8.25h1.5M12 8.25v7.5" />
+            </svg>
+            Procedimentos
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('procedimentos')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('procedimentos')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <!-- Timeline -->
+        <ol class="relative border-l border-gray-200 mt-4 space-y-6" id="listaProcedimentos">
+          <!-- Items do JSON via JS -->
+        </ol>
+      </section>
+
+      <!-- 5) Análise dos Resultados (antes era "Questões") -->
+      <section id="resultAnalysis" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-rose-700 flex items-center">
+            <!-- Ícone "chart-bar" (mantido) -->
+            <svg class="w-6 h-6 mr-2 text-rose-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v17.25c0 .414.336.75.75.75h16.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 9.75v7.5m4.5-3v3m4.5-6v6" />
+            </svg>
+            Análise dos Resultados
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('resultAnalysis')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('resultAnalysis')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <ul class="divide-y divide-gray-200" id="listaResultados"></ul>
+      </section>
+
+      <!-- 6) Conceitos -->
+      <section id="conceitos" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-orange-700 flex items-center">
+            <!-- Ícone "bookmark" -->
+            <svg class="w-6 h-6 mr-2 text-orange-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16.5 2.25h-9A2.25 2.25 0 005.25 4.5v16.019a.75.75 0 001.14.643L12 18.75l5.61 2.412a.75.75 0 001.14-.643V4.5a2.25 2.25 0 00-2.25-2.25z" />
+            </svg>
+            Conceitos
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('conceitos')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('conceitos')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="listaConceitos"></div>
+      </section>
+
+      <!-- 7) Habilidades Cognitivas -->
+      <section id="habilidadesCognitivas" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-green-700 flex items-center">
+            <!-- Ícone "light-bulb" -->
+            <svg class="w-6 h-6 mr-2 text-green-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 2.25a7.5 7.5 0 00-3.75 14.03v1.22a2.25 2.25 0 102.25 2.25h3a2.25 2.25 0 002.25-2.25v-1.22A7.5 7.5 0 0012 2.25z">
+              </path>
+            </svg>
+            Habilidades Cognitivas
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('habilidadesCognitivas')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('habilidadesCognitivas')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="listaHabilidadesCognitivas"></div>
+      </section>
+
+      <!-- 8) Objetivos de Aprendizagem -->
+      <section id="objetivosAprendizagem" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-cyan-700 flex items-center">
+            <!-- Ícone "clipboard-list" -->
+            <svg class="w-6 h-6 mr-2 text-cyan-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 5.25H7.5a2.25 2.25 0 00-2.25 2.25v11.25a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H15" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5.25a3 3 0 106 0" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12h.008v.008H9v-.008zm3 0h.008v.008H12v-.008zm3 0h.008v.008H15v-.008zM9 15h.008v.008H9V15zm3 0h.008v.008H12V15zm3 0h.008v.008H15V15z" />
+            </svg>
+            Objetivos de Aprendizagem
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('objetivosAprendizagem')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('objetivosAprendizagem')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="listaObjetivosAprendizagem"></div>
+      </section>
+
+      <!-- 9) Habilidades e Competências -->
+      <section id="habilidadesECompetencias" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-indigo-700 flex items-center">
+            <!-- Ícone "academic-cap" -->
+            <svg class="w-6 h-6 mr-2 text-indigo-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9-4 9 4-9 4-9-4zm0 5l9 4 9-4m-9 4v4.5" />
+            </svg>
+            Habilidades e Competências
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('habilidadesECompetencias')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('habilidadesECompetencias')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <div id="habilidadesCorrelacionadas"></div>
+      </section>
+
+      <!-- 10) Objetos de Conhecimento Aplicáveis -->
+      <section id="objetosConhecimento" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-2 mb-4">
+          <h3 class="text-xl font-semibold text-amber-700 flex items-center">
+            <!-- Ícone "lightning-bolt" -->
+            <svg class="w-6 h-6 mr-2 text-amber-700" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 2L2.5 13.5h9l-1.5 8L21.5 10h-9l1.5-8z" />
+            </svg>
+            Objetos de Conhecimento Aplicáveis
+          </h3>
+          <div class="flex space-x-3 text-2xl">
+            <button onclick="openAiPopup('objetosConhecimento')" title="Gerar novo conteúdo por IA">✨</button>
+            <button onclick="openEditPopup('objetosConhecimento')" title="Editar conteúdo">✏️</button>
+          </div>
+        </div>
+        <div id="objetosConhecimentoList"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="w-full bg-white shadow-inner">
+    <div class="container mx-auto px-4 py-4 text-center text-sm text-gray-500">
+      &copy; 2025 - Análise de Roteiro
+    </div>
+  </footer>
+
+  <!-- POPUP (modal) para a "geração de conteúdo IA" -->
+  <div id="aiPopup" class="hidden fixed inset-0 z-50 modal-overlay flex justify-center items-center">
+    <!-- Conteúdo do modal -->
+    <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 rounded shadow-lg p-6 relative">
+      <!-- Botão Fechar -->
+      <button class="absolute top-2 right-2 text-2xl leading-none" onclick="closeAiPopup()">
+        &times;
+      </button>
+
+      <h3 class="text-lg font-bold mb-4">Gerar Novo Conteúdo via IA</h3>
+
+      <form id="aiForm" onsubmit="event.preventDefault(); regenerateContent();">
+        <!-- Qual seção está sendo editada -->
+        <input type="hidden" id="aiSectionInput" name="aiSection" />
+
+        <!-- Modelo a ser usado -->
+        <label for="aiModel" class="block text-sm font-medium mb-1">
+          Selecione o modelo:
+        </label>
+        <select id="aiModel" class="w-full p-2 border rounded mb-3 text-sm" name="aiModel">
+          <option value="gpt-4o">gpt-4o</option>
+          <option value="gpt-o1">gpt-o1</option>
+          <option value="gpt-o1-mini">gpt-o1-mini</option>
+        </select>
+
+        <!-- Instruções Adicionais -->
+        <label for="aiInstructions" class="block text-sm font-medium mb-1">
+          Instruções adicionais:
+        </label>
+        <textarea id="aiInstructions" name="aiInstructions" rows="4" class="w-full p-2 border rounded mb-3 text-sm"
+          placeholder="Digite aqui suas instruções..."></textarea>
+
+        <!-- Botão submeter -->
+        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
+          Regerar conteúdo
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- POPUP (modal) para editar conteúdo da seção -->
+  <div id="editPopup" class="hidden fixed inset-0 z-50 modal-overlay flex justify-center items-center">
+    <!-- Conteúdo do modal -->
+    <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 rounded shadow-lg p-6 relative">
+      <!-- Botão Fechar -->
+      <button class="absolute top-2 right-2 text-2xl leading-none" onclick="closeEditPopup()">
+        &times;
+      </button>
+
+      <h3 class="text-lg font-bold mb-4" id="editPopupTitle">Editar Conteúdo</h3>
+
+      <form id="editForm" onsubmit="event.preventDefault(); saveEditedContent();">
+        <!-- Qual seção está sendo editada -->
+        <input type="hidden" id="editSectionInput" name="editSection" />
+
+        <!-- Área dinâmica (será preenchida via JavaScript de acordo com a seção) -->
+        <div id="editDynamicFields" class="space-y-4"></div>
+
+        <!-- Botão Salvar -->
+        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
+          Salvar Alterações
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    let rootModel = null;
+    let relatedQuestionsData = null;
+
+    // Para controlar o índice atual de cada habilidade (exemplo: skillCurrentIndex["10"] = 0)
+    const skillCurrentIndex = {};
+
+    // Carrega os dois arquivos JSON em paralelo
+    Promise.all([
+      fetch("final_script.json").then((r) => r.json()),
+      fetch("related_questions.json").then((r) => r.json()),
+    ])
+      .then(([dataFinalScript, dataRelatedQuestions]) => {
+        rootModel = dataFinalScript;
+        relatedQuestionsData = dataRelatedQuestions;
+
+        renderAll();
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar os JSONs:", error);
+      });
+
+    // Função principal de renderização
+    function renderAll() {
+      // 1) Preenche dados do final_script.json
+      fillFinalScriptData();
+
+      // 2) Ajusta a lógica para inserir o botão "Ver questões do ENEM" em cada habilidade
+      insertButtonsInHabilidades();
+    }
+
+    // ============ FUNÇÕES DE PARSE E AJUDA =============
+
+    // Parseia o campo "context" para substituir ![](URL) por <img src="URL" ... >
+    function parseMarkdownImages(text) {
+      if (!text) return "";
+      // Expressão regular simples para capturar ![](algum_link)
+      return text.replace(
+        /!\[\]\((.*?)\)/g,
+        '<img src="$1" alt="Questão ENEM" class="max-w-full h-auto my-2" />'
+      );
+    }
+
+    // Barra de dificuldade dinâmica em HSL (0->100 => verde->vermelho).
+    function getDifficultyColor(value) {
+      const hue = 120 - (value * 120) / 100;
+      return `hsl(${hue}, 100%, 40%)`;
+    }
+
+    // ============ FUNÇÕES PRINCIPAIS =============
+
+    function fillFinalScriptData() {
+      // Título
+      document.getElementById("tituloExperimento").textContent =
+        rootModel?.script?.name ?? "Experimento Interativo";
+
+      // Descrição do experimento
+      document.getElementById("descricaoDoExperimento").textContent =
+        rootModel?.script?.descrição_do_experimento ?? "Não informado";
+
+      // Objetivo geral
+      document.getElementById("objetivoGeralText").textContent =
+        rootModel?.script?.objetivo_geral ?? "Não informado";
+
+      // Materiais necessários
+      const listaMateriais = document.getElementById("listaMateriais");
+      listaMateriais.innerHTML = ""; // limpa qualquer resíduo
+      (rootModel?.script?.necessary_materials || []).forEach((mat) => {
+        const li = document.createElement("li");
+        li.textContent = mat.item;
+        listaMateriais.appendChild(li);
+      });
+
+      // Procedimentos
+      const listaProcedimentos = document.getElementById("listaProcedimentos");
+      listaProcedimentos.innerHTML = "";
+      (rootModel?.script?.procedures || []).forEach((proc, index) => {
+        const li = document.createElement("li");
+        li.classList.add("ml-6");
+        li.innerHTML = `
+            <!-- Marcador da timeline -->
+            <span
+              class="absolute flex items-center justify-center w-8 h-8 bg-sky-100 rounded-full -left-4 ring-4 ring-white"
+            >
+              <span class="text-sky-600 font-bold">
+                ${index + 1}
+              </span>
+            </span>
+
+            <!-- Conteúdo do procedimento -->
+            <div
+              class="p-4 bg-sky-50 rounded-md shadow-md hover:shadow-lg transition duration-300"
+            >
+              <h4 class="text-lg font-semibold text-sky-700 mb-1">
+                ${proc.procedure}
+              </h4>
+              <p class="mt-2 text-gray-700">
+                ${proc.intermediate_text}
+              </p>
+              <p class="text-sm text-gray-600 mt-3">
+                <strong class="text-sky-700">Dica cognitiva:</strong>
+                ${proc.cognitive_hint}
+              </p>
+            </div>
+          `;
+        listaProcedimentos.appendChild(li);
+      });
+
+      // Análise dos Resultados
+      const listaResultados = document.getElementById("listaResultados");
+      listaResultados.innerHTML = "";
+      (rootModel?.script?.result_analysis || []).forEach((res) => {
+        const li = document.createElement("li");
+        li.classList.add("py-4", "flex", "items-start", "space-x-3");
+        li.innerHTML = `
+            <!-- Ícone: question mark circle -->
+            <div class="flex-shrink-0">
+              <svg
+                class="w-6 h-6 text-rose-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.42 10.24A3.58 3.58 0 0112 6.5a3.58 3.58 0 013.58 3.74c0 1.7-1.08 2.61-2.3 3.38-.4.25-.77.47-1.06.73-.28.26-.5.55-.5 1.15v.5m0 3.25h.01"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                ></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-700">${res.question}</p>
+            </div>
+          `;
+        listaResultados.appendChild(li);
+      });
+
+      // Conceitos
+      const listaConceitos = document.getElementById("listaConceitos");
+      listaConceitos.innerHTML = "";
+      const conceitos = rootModel?.script?.conceitos?.conceitos || [];
+      conceitos.forEach((conc) => {
+        const divCard = document.createElement("div");
+        divCard.classList.add(
+          "bg-orange-50",
+          "rounded-md",
+          "shadow",
+          "p-4",
+          "space-y-2"
+        );
+        divCard.innerHTML = `
+            <h4 class="text-base font-bold text-orange-600">
+              ${conc.nome} (${conc.tipo})
+            </h4>
+            <p class="text-gray-700">
+              <strong>Descrição:</strong> ${conc.descrição}
+            </p>
+            <p class="text-gray-700">
+              <strong>Já Abordado?</strong> ${conc.já_abordado ? "Sim" : "Não"}
+            </p>
+          `;
+        listaConceitos.appendChild(divCard);
+      });
+
+      // Habilidades Cognitivas
+      const gridHabCog = document.getElementById("listaHabilidadesCognitivas");
+      gridHabCog.innerHTML = "";
+      const habCognitivas = rootModel?.script?.habilidades_cognitivas || [];
+
+      if (habCognitivas.length === 0) {
+        const divEmpty = document.createElement("div");
+        divEmpty.classList.add(
+          "text-gray-600",
+          "bg-gray-50",
+          "p-4",
+          "rounded",
+          "col-span-1",
+          "md:col-span-2"
+        );
+        divEmpty.textContent = "Nenhuma habilidade cognitiva cadastrada.";
+        gridHabCog.appendChild(divEmpty);
+      } else {
+        habCognitivas.forEach((hab) => {
+          const divCard = document.createElement("div");
+          divCard.classList.add(
+            "bg-green-50",
+            "rounded-md",
+            "shadow",
+            "p-4",
+            "space-y-2"
+          );
+          divCard.innerHTML = `
+              <h4 class="text-base font-bold text-green-600">
+                Habilidade #${hab.id} — ${hab.nome}
+              </h4>
+              <p class="text-gray-700">
+                <strong>Descrição:</strong> ${hab.descrição}
+              </p>
+              <p class="text-gray-700">
+                <strong>Tipo:</strong> ${hab.tipo}
+              </p>
+            `;
+          gridHabCog.appendChild(divCard);
+        });
+      }
+
+      // Objetivos de Aprendizagem
+      const listaObjetivosAprendizagem = document.getElementById(
+        "listaObjetivosAprendizagem"
+      );
+      listaObjetivosAprendizagem.innerHTML = "";
+      const objetivosAprend =
+        rootModel?.script?.objetivos_de_aprendizagem?.objetivos_de_aprendizagem ||
+        [];
+      objetivosAprend.forEach((obj) => {
+        const divCard = document.createElement("div");
+        divCard.classList.add(
+          "bg-cyan-50",
+          "rounded-md",
+          "shadow",
+          "p-4",
+          "space-y-1"
+        );
+        divCard.innerHTML = `
+            <h4 class="text-base font-bold text-cyan-600">
+              Objetivo #${obj.id} (${obj.tipo})
+            </h4>
+            <p class="text-gray-700">
+              <strong>Descrição:</strong> ${obj.descrição}
+            </p>
+            <p class="text-gray-700">
+              <strong>Relação com a Prática:</strong> ${obj.relação_com_a_prática}
+            </p>
+            <p class="text-gray-700">
+              <strong>Procedimentos Relacionados (IDs):</strong> ${obj.procedimentos_relacionados.join(" ")}
+            </p>
+            <p class="text-gray-700">
+              <strong>Avaliação do Objetivo:</strong> ${obj.avaliação_do_objetivo}
+            </p>
+          `;
+        listaObjetivosAprendizagem.appendChild(divCard);
+      });
+
+      // Habilidades e Competências
+      const habCorrContainer = document.getElementById(
+        "habilidadesCorrelacionadas"
+      );
+      habCorrContainer.innerHTML = "";
+      const habilidades = rootModel?.script?.habilidades || {};
+
+      function renderHabilidadesPorNivel(nivel, titulo, cor) {
+        const correlationList = habilidades[nivel] || [];
+        if (correlationList.length === 0) return;
+
+        const section = document.createElement("div");
+        section.classList.add("mb-6");
+        section.innerHTML = `
+            <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
+              ${titulo}
+            </h4>
+          `;
+        habCorrContainer.appendChild(section);
+
+        correlationList.forEach((corr) => {
+          const areaDiv = document.createElement("div");
+          areaDiv.classList.add("mb-4", "bg-indigo-50", "p-4", "rounded-md");
+          areaDiv.innerHTML = `
+              <p class="text-indigo-700 font-semibold">
+                Área do Conhecimento: ${corr.area_do_conhecimento}
+              </p>
+            `;
+          corr.competencias.forEach((comp) => {
+            const compDiv = document.createElement("div");
+            compDiv.classList.add(
+              "mt-2",
+              "ml-2",
+              "p-2",
+              "border-l-2",
+              "border-indigo-200"
+            );
+            compDiv.innerHTML = `
+                <p class="text-indigo-600 font-semibold">
+                  ${comp.codigo_da_competencia} - ${comp.descricao_da_competencia}
+                </p>
+                <p class="text-sm text-indigo-700 mb-2">
+                  Category: ${comp.category_name}
+                </p>
+              `;
+            comp.habilidades.forEach((hb) => {
+              const hbItem = document.createElement("div");
+              hbItem.classList.add(
+                "ml-3",
+                "mt-1",
+                "bg-white",
+                "rounded",
+                "p-2",
+                "shadow-sm"
+              );
+
+              const exemplosUnidos = hb.exemplos_de_aplicacao?.join(" ") || "";
+
+              hbItem.innerHTML = `
+                  <p class="text-sm font-semibold text-indigo-800">
+                    ${hb.codigo_da_habilidade} — ${hb.descricao_da_habilidade}
+                  </p>
+                  <p class="text-xs text-gray-600">
+                    Exemplos: ${exemplosUnidos}
+                  </p>
+                  <!-- Aqui entra o botão e container para questões do ENEM -->
+                `;
+              compDiv.appendChild(hbItem);
+            });
+            areaDiv.appendChild(compDiv);
+          });
+          section.appendChild(areaDiv);
+        });
+      }
+
+      renderHabilidadesPorNivel(
+        "higly_correlated",
+        "Correlação Alta",
+        "text-indigo-600"
+      );
+      renderHabilidadesPorNivel(
+        "medium_correlated",
+        "Correlação Média",
+        "text-indigo-500"
+      );
+      renderHabilidadesPorNivel(
+        "low_correlated",
+        "Correlação Baixa",
+        "text-indigo-400"
+      );
+
+      // Objetos de Conhecimento Aplicáveis
+      const objetosConhecimentoContainer = document.getElementById(
+        "objetosConhecimentoList"
+      );
+      objetosConhecimentoContainer.innerHTML = "";
+      const knowledgeObjects =
+        rootModel?.script?.applicable_knowledge_objects || {};
+
+      function renderKnowledgeObjectsByLevel(nivel, titulo, cor) {
+        const corrList = knowledgeObjects[nivel] || [];
+        if (corrList.length === 0) return;
+
+        const section = document.createElement("div");
+        section.classList.add("mb-6");
+        section.innerHTML = `
+            <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
+              ${titulo}
+            </h4>
+          `;
+        objetosConhecimentoContainer.appendChild(section);
+
+        corrList.forEach((appK) => {
+          const areaDiv = document.createElement("div");
+          areaDiv.classList.add("mb-4", "bg-amber-50", "p-4", "rounded-md");
+          areaDiv.innerHTML = `
+              <p class="text-amber-700 font-semibold">
+                Área de Competência: ${appK.competency_area_name}
+              </p>
+              <p class="text-sm text-amber-800 mb-2">
+                Componente Curricular: ${appK.curriculum_component}
+              </p>
+            `;
+          (appK.categories || []).forEach((cat) => {
+            const catDiv = document.createElement("div");
+            catDiv.classList.add(
+              "ml-3",
+              "mt-2",
+              "p-2",
+              "border-l-2",
+              "border-amber-200"
+            );
+            catDiv.innerHTML = `
+                <p class="text-amber-600 font-semibold">
+                  Categoria: ${cat.category_name}
+                </p>
+              `;
+            (cat.objects || []).forEach((obj) => {
+              const objItem = document.createElement("div");
+              objItem.classList.add(
+                "ml-3",
+                "mt-1",
+                "bg-white",
+                "rounded",
+                "p-2",
+                "shadow-sm"
+              );
+              objItem.innerHTML = `
+                  <p class="text-sm font-semibold text-amber-800">
+                    ${obj.object_name}
+                  </p>
+                `;
+              catDiv.appendChild(objItem);
+            });
+            areaDiv.appendChild(catDiv);
+          });
+          section.appendChild(areaDiv);
+        });
+      }
+
+      renderKnowledgeObjectsByLevel(
+        "higly_correlated",
+        "Correlação Alta",
+        "text-amber-600"
+      );
+      renderKnowledgeObjectsByLevel(
+        "medium_correlated",
+        "Correlação Média",
+        "text-amber-500"
+      );
+      renderKnowledgeObjectsByLevel(
+        "low_correlated",
+        "Correlação Baixa",
+        "text-amber-400"
+      );
+    }
+
+    function insertButtonsInHabilidades() {
+      // Seleciona todos os cards de habilidade criados acima
+      const hbItems = document.querySelectorAll(
+        "#habilidadesCorrelacionadas .border-l-2 .bg-white.rounded.p-2.shadow-sm"
+      );
+
+      hbItems.forEach((hbItem) => {
+        // Extrair o "hb.codigo_da_habilidade" contido no <p> principal
+        const pHabilidade = hbItem.querySelector(
+          "p.text-sm.font-semibold.text-indigo-800"
+        );
+        if (!pHabilidade) return;
+
+        const fullText = pHabilidade.textContent.trim(); // Ex: "H10 — alguma coisa"
+        let skillCode = "";
+        const matchH = fullText.match(/^H?(\d+)\s*—/i);
+        if (matchH) {
+          skillCode = matchH[1];
+        } else {
+          skillCode = "0";
+        }
+
+        // Cria botão "Ver questões do ENEM"
+        const verQuestoesBtn = document.createElement("button");
+        verQuestoesBtn.type = "button";
+        verQuestoesBtn.classList.add(
+          "mt-2",
+          "px-3",
+          "py-1",
+          "bg-indigo-200",
+          "text-indigo-800",
+          "rounded",
+          "hover:bg-indigo-300",
+          "text-sm"
+        );
+        verQuestoesBtn.textContent = "Ver questões do ENEM";
+
+        // Cria container para as questões (inicialmente hidden)
+        const questionsContainer = document.createElement("div");
+        questionsContainer.classList.add("mt-2", "hidden");
+        questionsContainer.id = `questionsForSkill-${skillCode}`;
+
+        // Evento de clique => toggle
+        verQuestoesBtn.addEventListener("click", () => {
+          if (questionsContainer.classList.contains("hidden")) {
+            questionsContainer.classList.remove("hidden");
+            showEnemQuestions(skillCode, questionsContainer);
+          } else {
+            questionsContainer.classList.add("hidden");
+          }
+        });
+
+        hbItem.appendChild(verQuestoesBtn);
+        hbItem.appendChild(questionsContainer);
+      });
+    }
+
+    // Exibe as questões de uma determinada habilidade no container
+    function showEnemQuestions(skillCode, container) {
+      const key = "H" + skillCode;
+      if (!relatedQuestionsData?.root?.[key]) {
+        container.innerHTML = `
+            <p class="text-red-600 text-sm mt-2">Nenhuma questão encontrada para a habilidade H${skillCode}</p>
+          `;
+        return;
+      }
+
+      const skillBlock = relatedQuestionsData.root[key];
+      const questoesDetalhes = skillBlock.questoes_detalhes || [];
+      const questoesCompletas = skillBlock.questoes_completas || [];
+
+      // Ordena por difficulty asc
+      const sortedDetalhes = [...questoesDetalhes].sort(
+        (a, b) => a.relative_difficulty - b.relative_difficulty
+      );
+
+      const sortedQuestoes = sortedDetalhes.map((detail) => {
+        const q = questoesCompletas.find((qq) => qq.index === detail.index);
+        return {
+          ...q,
+          _relative_difficulty: detail.relative_difficulty,
+        };
+      });
+
+      if (skillCurrentIndex[skillCode] == null) {
+        skillCurrentIndex[skillCode] = 0;
+      }
+      if (
+        skillCurrentIndex[skillCode] < 0 ||
+        skillCurrentIndex[skillCode] >= sortedQuestoes.length
+      ) {
+        skillCurrentIndex[skillCode] = 0;
+      }
+
+      container.innerHTML = `
+          <div class="p-3 bg-indigo-50 rounded-md">
+            <div class="flex flex-col space-y-3" id="questionsNav-${skillCode}">
+              
+              <!-- NAV SUPERIOR (botões e select) -->
+              <div class="flex flex-wrap items-center justify-between space-y-2 md:space-y-0">
+                
+                <!-- Bloco de navegação (Anterior, Resposta, Próxima) -->
+                <div class="flex space-x-2">
+                  <button id="prevQuestionBtn-${skillCode}"
+                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                    Questão anterior
+                  </button>
+
+                  <button id="viewAnswerBtn-${skillCode}"
+                    class="px-3 py-1 bg-yellow-200 rounded hover:bg-yellow-300 text-yellow-800 text-sm">
+                    Ver resposta
+                  </button>
+
+                  <button id="nextQuestionBtn-${skillCode}"
+                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                    Próxima questão
+                  </button>
+                </div>
+
+                <!-- Bloco de seleção de questão: "Ir para a questão X" -->
+                <div class="flex items-center space-x-2">
+                  <label for="questionSelect-${skillCode}"
+                         class="text-sm text-indigo-800 font-medium">
+                    Ir para a questão:
+                  </label>
+                  <select id="questionSelect-${skillCode}"
+                          class="p-1 border rounded text-sm">
+                  </select>
+                  <button id="jumpQuestionBtn-${skillCode}"
+                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                    Ir
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Conteúdo da questão -->
+              <div id="questionContent-${skillCode}"
+                   class="text-sm bg-white p-3 rounded shadow">
+              </div>
+
+              <!-- Contador de questões -->
+              <div id="questionCounter-${skillCode}"
+                   class="text-xs text-gray-700 text-right">
+              </div>
+
+              <!-- Resposta -->
+              <div id="answerBox-${skillCode}"
+                   class="text-sm text-green-700 hidden">
+              </div>
+            </div>
+          </div>
+        `;
+
+      const btnPrev = container.querySelector(`#prevQuestionBtn-${skillCode}`);
+      const btnNext = container.querySelector(`#nextQuestionBtn-${skillCode}`);
+      const btnAnswer = container.querySelector(`#viewAnswerBtn-${skillCode}`);
+      const questionContent = container.querySelector(`#questionContent-${skillCode}`);
+      const questionCounter = container.querySelector(`#questionCounter-${skillCode}`);
+      const answerBox = container.querySelector(`#answerBox-${skillCode}`);
+      const questionSelect = container.querySelector(`#questionSelect-${skillCode}`);
+      const jumpQuestionBtn = container.querySelector(`#jumpQuestionBtn-${skillCode}`);
+
+      sortedQuestoes.forEach((q, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `Questão ${i + 1}`;
+        questionSelect.appendChild(option);
+      });
+
+      questionSelect.value = skillCurrentIndex[skillCode];
+
+      function renderCurrentQuestion() {
+        const idx = skillCurrentIndex[skillCode];
+        const questao = sortedQuestoes[idx];
+        if (!questao) {
+          questionContent.innerHTML =
+            "<p class='text-red-500'>Questão inválida.</p>";
+          return;
+        }
+        const contextWithImages = parseMarkdownImages(questao.context);
+        questionCounter.textContent = `Questão ${idx + 1} de ${sortedQuestoes.length}`;
+
+        const difficulty = questao._relative_difficulty || 0;
+        const barColor = getDifficultyColor(difficulty);
+
+        const altHtml =
+          questao.alternatives
+            ?.map(
+              (alt) => `
+                <li class="mt-1">
+                  <strong>${alt.letter})</strong> ${alt.text}
+                </li>
+              `
+            )
+            .join("") || "";
+
+        questionContent.innerHTML = `
+            <p class="font-semibold mb-2">${questao.title}</p>
+
+            <div class="flex items-center space-x-2 mb-3">
+              <span class="text-sm font-medium">Dificuldade: ${difficulty}</span>
+              <div class="w-1/2 bg-gray-200 rounded-full h-2">
+                <div class="h-2 rounded-full"
+                     style="width:${difficulty}%; background-color:${barColor};">
+                </div>
+              </div>
+            </div>
+
+            <div class="text-gray-700 mb-2">
+              ${contextWithImages ?? ""}
+            </div>
+
+            <p class="text-sm mb-1">
+              ${questao.alternativesIntroduction ?? ""}
+            </p>
+            <ul class="list-disc list-inside text-sm">
+              ${altHtml}
+            </ul>
+          `;
+
+        answerBox.classList.add("hidden");
+        answerBox.innerHTML = "";
+        questionSelect.value = idx;
+      }
+
+      renderCurrentQuestion();
+
+      btnNext.addEventListener("click", () => {
+        const maxIndex = sortedQuestoes.length - 1;
+        if (skillCurrentIndex[skillCode] < maxIndex) {
+          skillCurrentIndex[skillCode]++;
+          renderCurrentQuestion();
+        }
+      });
+
+      btnPrev.addEventListener("click", () => {
+        if (skillCurrentIndex[skillCode] > 0) {
+          skillCurrentIndex[skillCode]--;
+          renderCurrentQuestion();
+        }
+      });
+
+      btnAnswer.addEventListener("click", () => {
+        const idx = skillCurrentIndex[skillCode];
+        const questao = sortedQuestoes[idx];
+        if (!questao) return;
+        answerBox.innerHTML = `
+            <p><strong>Resposta Correta:</strong> ${questao.correctAlternative}</p>
+          `;
+        answerBox.classList.remove("hidden");
+      });
+
+      jumpQuestionBtn.addEventListener("click", () => {
+        const chosen = parseInt(questionSelect.value, 10);
+        if (!isNaN(chosen) && chosen >= 0 && chosen < sortedQuestoes.length) {
+          skillCurrentIndex[skillCode] = chosen;
+          renderCurrentQuestion();
+        }
+      });
+    }
+
+    // ========== POPUP DE GERAÇÃO DE CONTEÚDO (IA) =============
+    function openAiPopup(sectionId) {
+      document.getElementById("aiSectionInput").value = sectionId;
+      document.getElementById("aiPopup").classList.remove("hidden");
+    }
+
+    function closeAiPopup() {
+      document.getElementById("aiPopup").classList.add("hidden");
+    }
+
+    function regenerateContent() {
+      const form = document.getElementById("aiForm");
+      const sectionId = form.aiSection.value;
+      const model = form.aiModel.value;
+      const instructions = form.aiInstructions.value.trim();
+
+      console.log(
+        "Gerar novo conteúdo para a seção",
+        sectionId,
+        "usando modelo:",
+        model,
+        "instruções:",
+        instructions
+      );
+
+      // Aqui você chamaria sua lógica para IA, etc.
+      // ...
+
+      closeAiPopup();
+    }
+
+    // ========== POPUP DE EDIÇÃO DE CONTEÚDO =============
+    function openEditPopup(sectionId) {
+      // Limpa o container de campos e define o sectionId em hidden:
+      document.getElementById("editDynamicFields").innerHTML = "";
+      document.getElementById("editSectionInput").value = sectionId;
+
+      // Muda título ou algo se quiser
+      const titleMap = {
+        descricaoExperimento: "Editar Descrição do Experimento",
+        objetivoGeral: "Editar Objetivo Geral",
+        materiaisNecessarios: "Editar Materiais Necessários",
+        procedimentos: "Editar Procedimentos",
+        resultAnalysis: "Editar Análise dos Resultados",
+        // ... e assim por diante
+      };
+      document.getElementById("editPopupTitle").textContent =
+        titleMap[sectionId] || "Editar Conteúdo";
+
+      // Dependendo da seção, podemos exibir formulários diferentes:
+      switch (sectionId) {
+        case "descricaoExperimento":
+          // Recupera o texto atual
+          const descAtual = document.getElementById("descricaoDoExperimento").textContent;
+          document.getElementById("editDynamicFields").innerHTML = `
+            <label class="block text-sm font-semibold" for="editTextArea">
+              Nova descrição:
+            </label>
+            <textarea id="editTextArea" rows="5"
+              class="w-full p-2 border rounded text-sm">${descAtual}</textarea>
+          `;
+          break;
+
+        case "objetivoGeral":
+          const objAtual = document.getElementById("objetivoGeralText").textContent;
+          document.getElementById("editDynamicFields").innerHTML = `
+            <label class="block text-sm font-semibold" for="editTextArea">
+              Novo objetivo geral:
+            </label>
+            <textarea id="editTextArea" rows="5"
+              class="w-full p-2 border rounded text-sm">${objAtual}</textarea>
+          `;
+          break;
+
+        case "materiaisNecessarios":
+          // Exemplo: cada material em um campo ou juntos. Aqui, faremos algo simples:
+          // Lemos a UL e montamos inputs
+          const ulMateriais = document.getElementById("listaMateriais");
+          const liItems = ulMateriais.querySelectorAll("li");
+          let htmlFields = "";
+          liItems.forEach((li, idx) => {
+            htmlFields += `
+              <div class="flex items-center space-x-2 mb-2">
+                <label class="text-sm font-medium">Item ${idx + 1}:</label>
+                <input type="text" class="w-full p-1 border rounded text-sm" 
+                       value="${li.textContent.trim()}"
+                       data-mat-index="${idx}"/>
+              </div>
+            `;
+          });
+          // Se quiser permitir adicionar mais, poderia ter um + aqui
+          document.getElementById("editDynamicFields").innerHTML = `
+            <p class="text-sm font-semibold mb-2">Editar itens de materiais:</p>
+            ${htmlFields || "<p class='text-gray-500'>Nenhum material listado.</p>"}
+          `;
+          break;
+
+        case "procedimentos":
+          // Exemplo: exibir cada procedimento com textarea
+          const procList = rootModel?.script?.procedures || [];
+          let procHtml = "";
+          procList.forEach((proc, i) => {
+            procHtml += `
+              <div class="mb-3 border-b pb-2">
+                <label class="text-sm font-semibold block">
+                  Passo ${i + 1}:
+                </label>
+                <input type="text" class="w-full p-1 border rounded text-sm mb-1"
+                       data-proc-index="${i}"
+                       value="${proc.procedure.replace(/"/g, "&quot;")}"/>
+                
+                <textarea class="w-full p-1 border rounded text-sm mb-1"
+                          data-proc-intro-index="${i}"
+                          rows="2">${proc.intermediate_text}</textarea>
+
+                <label class="block text-xs text-gray-600">Dica cognitiva</label>
+                <textarea class="w-full p-1 border rounded text-sm"
+                          data-proc-hint-index="${i}"
+                          rows="2">${proc.cognitive_hint}</textarea>
+              </div>
+            `;
+          });
+          document.getElementById("editDynamicFields").innerHTML = `
+            <div>
+              <p class="text-sm font-semibold mb-2">Editar Procedimentos:</p>
+              ${procHtml || "<p class='text-gray-500'>Nenhum procedimento listado.</p>"}
+            </div>
+          `;
+          break;
+
+        default:
+          // Padrão: mostra um textarea com todo o innerHTML
+          const sectionEl = document.getElementById(sectionId);
+          // Exemplo: só pega o primeiro <p> ou algo simples
+          const pEl = sectionEl.querySelector("p, div, ul");
+          const rawText = pEl?.textContent ?? "";
+          document.getElementById("editDynamicFields").innerHTML = `
+            <label class="block text-sm font-semibold" for="editTextArea">
+              Conteúdo da Seção:
+            </label>
+            <textarea id="editTextArea" rows="5"
+              class="w-full p-2 border rounded text-sm">${rawText}</textarea>
+          `;
+          break;
+      }
+
+      // Exibe o modal
+      document.getElementById("editPopup").classList.remove("hidden");
+    }
+
+    function closeEditPopup() {
+      document.getElementById("editPopup").classList.add("hidden");
+    }
+
+    function saveEditedContent() {
+      const sectionId = document.getElementById("editSectionInput").value;
+
+      switch (sectionId) {
+        case "descricaoExperimento": {
+          const newText = document.getElementById("editTextArea").value;
+          document.getElementById("descricaoDoExperimento").textContent = newText;
+          break;
+        }
+        case "objetivoGeral": {
+          const newText = document.getElementById("editTextArea").value;
+          document.getElementById("objetivoGeralText").textContent = newText;
+          break;
+        }
+        case "materiaisNecessarios": {
+          // Ler cada input e atualizar a UL
+          const inputs = document.querySelectorAll("#editDynamicFields input[data-mat-index]");
+          const ulMateriais = document.getElementById("listaMateriais");
+          ulMateriais.innerHTML = "";
+          inputs.forEach((inp) => {
+            const li = document.createElement("li");
+            li.textContent = inp.value;
+            ulMateriais.appendChild(li);
+          });
+          break;
+        }
+        case "procedimentos": {
+          // Atualiza nosso rootModel e refaz a renderização
+          const procedureInputs = document.querySelectorAll("[data-proc-index]");
+          const introInputs = document.querySelectorAll("[data-proc-intro-index]");
+          const hintInputs = document.querySelectorAll("[data-proc-hint-index]");
+
+          procedureInputs.forEach((inp) => {
+            const index = parseInt(inp.getAttribute("data-proc-index"), 10);
+            rootModel.script.procedures[index].procedure = inp.value;
+          });
+
+          introInputs.forEach((inp) => {
+            const index = parseInt(inp.getAttribute("data-proc-intro-index"), 10);
+            rootModel.script.procedures[index].intermediate_text = inp.value;
+          });
+
+          hintInputs.forEach((inp) => {
+            const index = parseInt(inp.getAttribute("data-proc-hint-index"), 10);
+            rootModel.script.procedures[index].cognitive_hint = inp.value;
+          });
+
+          // Re-render
+          fillFinalScriptData();
+          break;
+        }
+        default: {
+          // Pega o textarea e joga o valor de volta no primeiro <p> ou <div> da seção
+          const newText = document.getElementById("editTextArea").value;
+          const sectionEl = document.getElementById(sectionId);
+          const pEl = sectionEl.querySelector("p, div, ul");
+          if (pEl) {
+            pEl.textContent = newText;
+          }
+          break;
+        }
+      }
+
+      closeEditPopup();
+    }
+  </script>
+</body>
+
+</html>
