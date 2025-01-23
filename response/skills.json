@@ -1,0 +1,52 @@
+{
+    "habilidades": [
+        {
+            "id": 1,
+            "nome": "Calibragem de Instrumentos",
+            "descrição": "Ajustar e calibrar o dinamômetro corretamente antes de realizar medidas para garantir a confiabilidade dos resultados obtidos.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 2,
+            "nome": "Manuseio de Equipamentos de Laboratório",
+            "descrição": "Habilidade para manusear o dinamômetro, béquer, e suporte universal de forma precisa, garantindo que os equipamentos estejam corretamente posicionados e utilizados.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 3,
+            "nome": "Preenchimento de Recipientes",
+            "descrição": "Capacidade de preencher o recipiente com água até o nível desejado, sem derramar, utilizando ferramentas adequadas como pisseta.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 4,
+            "nome": "Coleta de Dados Experimentais",
+            "descrição": "Observar e registrar o peso indicado pelo dinamômetro em diferentes etapas do experimento de forma precisa e cuidadosa.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 5,
+            "nome": "Análise de Resultados",
+            "descrição": "Interpretar os resultados obtidos durante o experimento, analisando como as variáveis experimentais influenciam as medições e relacionando-as ao Princípio de Arquimedes.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 6,
+            "nome": "Justificativa Científica",
+            "descrição": "Capacidade de explicar com base em conceitos de física por que ocorre uma aparente diminuição de peso quando um objeto é imerso em líquido, relacionando o fenômeno ao empuxo.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 7,
+            "nome": "Resolução de Problemas",
+            "descrição": "Aplicar princípios físicos para responder às questões propostas na análise de resultados, como calcular o empuxo e distinguir entre peso real e aparente.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 8,
+            "nome": "Compreensão de Conceitos Científicos",
+            "descrição": "Entender os princípios básicos por trás do empuxo e a razão para a expressão 'aparente diminuição do peso'.",
+            "tipo": "habilidade cognitiva"
+        }
+    ]
+}

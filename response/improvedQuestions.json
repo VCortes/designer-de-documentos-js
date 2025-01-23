@@ -1,0 +1,835 @@
+{
+    "name": "Empuxo e o Princípio de Arquimedes",
+    "area_of_knowledge": "Ciências da Natureza e suas Tecnologias",
+    "virtual_laboratory_name": "Empuxo e o Princípio de Arquimedes",
+    "curricular_component": "Física",
+    "script": {
+        "necessary_materials": [
+            {
+                "id": 1,
+                "item": "Béquer"
+            },
+            {
+                "id": 2,
+                "item": "Água"
+            },
+            {
+                "id": 3,
+                "item": "Suporte universal"
+            },
+            {
+                "id": 4,
+                "item": "Dinamômetro"
+            },
+            {
+                "id": 5,
+                "item": "Cilindro de Arquimedes"
+            },
+            {
+                "id": 6,
+                "item": "Recipiente transparente"
+            }
+        ],
+        "procedures": [
+            {
+                "id": 1,
+                "procedure": "VERIFICANDO O PESO DO CILINDRO",
+                "cognitive_hint": "Lembre-se de que a calibração correta do dinamômetro é fundamental para obter medições precisas. Caso o dinamômetro não esteja calibrado, suas leituras podem apresentar erros.,Concentre-se na posição do cilindro e do dinamômetro para garantir que o peso medido não seja influenciado por forças externas indesejadas. A precisão na posição e leitura é crucial.",
+                "intermediate_text": "Antes de iniciar, assegure-se que o dinamômetro está corretamente calibrado. Para isso, ajuste seu ponteiro à zero sem qualquer carga. Em seguida, repouse o cilindro de Arquimedes sobre uma superfície estável e plana, garantindo que sua base esteja nivelada e sem inclinações. Posicione cuidadosamente o dinamômetro, verificando se o gancho ou ponto de suporte está alinhado corretamente sobre o cilindro. Certifique-se de que não há forças laterais atuando sobre o cilindro e então leia cuidadosamente o peso indicado na escala do dinamômetro. Isso fornecerá a medida do peso do cilindro quando exposto ao ar, o que servirá como um ponto de referência para comparações subsequentes. Mantenha anotações precisas do peso registrado."
+            },
+            {
+                "id": 2,
+                "procedure": "COLOCANDO O CILINDRO NO BÉQUER",
+                "cognitive_hint": "Ao posicionar o béquer, certifique-se de que ele esteja completamente cheio de água para que o cilindro fique totalmente submerso. Caso contrário, o empuxo medido não será o correto, levando a uma interpretação equivocada dos resultados.,Lembre-se de que o dinamômetro deve ser manuseado com cuidado, elevando o cilindro de forma controlada para evitar oscilações bruscas que podem afetar a precisão da medição.,Pense sobre como a inserção cuidadosa do cilindro no béquer está relacionada ao conceito de empuxo e ao Princípio de Arquimedes para melhor compreensão do fenômeno.,Concentre-se na observação de qualquer mudança imediata e drástica no peso indicado pelo dinamômetro após a submersão e como isso reflete a força de empuxo.",
+                "intermediate_text": "Com cuidado, utilize o dinamômetro para elevar o cilindro de Arquimedes e posicione um béquer já preenchido com água diretamente abaixo dele. Lentamente, abaixe o cilindro até que ele esteja completamente imerso na água do béquer. Certifique-se de que o cilindro não entre em contato com as paredes do béquer, garantindo que nenhuma força além da gravitacional e do empuxo age sobre ele. Note cuidadosamente qualquer alteração no valor mostrado no dinamômetro, pois agora ele deve refletir o peso aparente, que é a diferença entre o peso do cilindro no ar e a força de empuxo exercida pela água. Anote a nova medição com precisão para comparação."
+            },
+            {
+                "id": 3,
+                "procedure": "PREENCHENDO O RECIPIENTE COM ÁGUA",
+                "cognitive_hint": "Ao preencher o recipiente, preste atenção na quantidade de água adicionada. O nível da água no recipiente deve permitir uma comparação eficaz do peso aparente do cilindro posteriormente, sem transbordar.,Lembre-se de manter o recipiente estável durante o preenchimento para evitar derramamentos que possam alterar as medições e comprometer a precisão dos resultados.,Reflita sobre a relação entre o volume de água no recipiente e o empuxo que será exercido sobre o cilindro, já que esse volume determinará a quantidade de fluido deslocado.",
+                "intermediate_text": "Usando a pisseta, com cuidado, encha o recipiente transparente com água. O nível da água deve ser suficiente para submergir completamente o cilindro de Arquimedes, quando necessário, mas tome cuidado para que não ultrapasse o limite do recipiente para evitar derramamentos indesejados. Após o preenchimento do recipiente, pressione suavemente para remover qualquer bolha de ar que possa ter se formado, garantindo que a água esteja em contato direto com as paredes do recipiente. Em seguida, verifique novamente a balança ou o dinamômetro para observar e registrar quaisquer alterações no peso aparente do cilindro."
+            },
+            {
+                "id": 4,
+                "procedure": "DESMONTANDO O EXPERIMENTO",
+                "cognitive_hint": "Antes de desmontar qualquer experimento, verifique se todos os equipamentos estão desligados e seguros para manuseio, prevenindo possíveis acidentes ou danos aos materiais usados.,Ao remover o dinamômetro, tenha certeza de que ele está estável e que os materiais ao redor estão sob controle para evitar quedas ou derramamentos de água que possam comprometer a integridade do espaço de trabalho.",
+                "intermediate_text": "Para iniciar o processo de desmontagem, é importante garantir que todos os instrumentos estejam seguros e prontos para serem removidos. Eleve o dinamômetro cuidadosamente para retirar o béquer da posição suspensa e colocá-lo de volta na mesa. Certifique-se de que o cilindro de Arquimedes esteja firmemente reposicionado na mesa antes de continuar com a desmontagem. Em seguida, esvazie o recipiente transparente, assegurando-se de fazê-lo de forma controlada para evitar derramamentos. Assim que todos os materiais e equipamentos estiverem de volta às suas configurações iniciais e adequadamente armazenados, proceda para a seção 'Avaliação de Resultados' neste roteiro, analisando as observações e medições feitas ao longo do experimento. Essa análise é crucial para consolidar os aprendizados adquiridos e correlacionar os resultados obtidos com os conceitos teóricos explorados."
+            },
+            {
+                "id": 5,
+                "procedure": "AVALIAÇÃO DOS RESULTADOS",
+                "cognitive_hint": "Para justificar a diminuição aparente do peso do cilindro, lembre-se da relação entre o empuxo e o peso do fluido deslocado. Pense sobre como o empuxo atua na direção oposta ao peso.,Ao considerar por que o dinamômetro retorna ao valor inicial, reflita sobre a condição do sistema ao preencher o recipiente. Isto pode ajudá-lo a entender que o empuxo depende diretamente do volume de líquido deslocado.,Analise a influência do volume do recipiente sobre o comportamento do dinamômetro. Considere o conceito de fluido em repouso e como o deslocamento interno ocorre em recipientes diferentes.,Reflita sobre o termo 'aparente' ao descrever a diminuição do peso. Entenda que o peso real não muda, mas sim a força percebida quando imerso em um fluido.",
+                "intermediate_text": "Agora, é hora de sistematizar suas observações! Vá para a seção 'Avaliação de Resultados' deste roteiro e responda as questões com base nos fenômenos que você observou ao longo do experimento. Use seu entendimento do empuxo, do Princípio de Arquimedes e das forças envolvidas para analisar as mudanças no peso do cilindro quando ele está submerso na água. Essa análise ajudará a compreender as forças em ação e a confirmar os conceitos teóricos na prática."
+            }
+        ],
+        "result_analysis": [
+            {
+                "id": 1,
+                "question": "Explique por que o peso do cilindro parece diminuir quando ele é submerso na água, utilizando o conceito de empuxo e o Princípio de Arquimedes. Durante o experimento, quando o cilindro é imerso na água, uma força de empuxo atua sobre ele, que é oposta ao peso. De acordo com o Princípio de Arquimedes, essa força é exatamente igual ao peso do fluido deslocado pelo cilindro. Assim, ao ser submerso, o cilindro experimenta um peso aparente menor, pois a força de empuxo diminui a leitura no dinamômetro. Com base nessas observações, descreva como o empuxo altera a percepção do peso do cilindro e relacione isso aos conceitos teóricos aprendidos."
+            },
+            {
+                "id": 2,
+                "question": "Explique por que o peso registrado pelo dinamômetro retorna ao valor inicial do cilindro, como se ele estivesse fora da água, ao completar o recipiente com água. Considere o princípio de Arquimedes em sua resposta. Durante o experimento, ao preencher completamente o recipiente com água, o cilindro, que estava suspendido parcial ou totalmente imerso, agora se encontra efetivamente 'fora' do fluido do ponto de vista do dinamômetro, devido ao transbordo do volume de fluido deslocado. De acordo com o Princípio de Arquimedes, um corpo imerso em um fluido experimenta um empuxo equivalente ao peso do fluido deslocado. Quando o recipiente é preenchido de tal forma que o fluido deslocado corresponde exatamente ao volume do cilindro, não há diferença adicional de volume para registrar um empuxo efetivo além do necessário para suspensões momentâneas anteriores. Assim, o dinamômetro relembra a condição inicial de medição, como se o cilindro estivesse 'em pé livre'. Explique como isto ocorre em termos práticos e teóricos, e o que essa observação sugere sobre as condições do recipiente e do fluido."
+            },
+            {
+                "id": 3,
+                "question": "Considere um cenário no qual o volume do recipiente utilizado no experimento é muito maior comparado ao volume do cilindro de Arquimedes. Se o recipiente contiver uma quantidade de água suficiente que ultrapasse consideravelmente o volume necessário para submergir o cilindro, você acredita que o comportamento do dinamômetro sofreria alterações em comparação ao observado quando o cilindro estava imerso? Justifique sua resposta fazendo uso do Princípio de Arquimedes. Tenha em mente que, segundo esse princípio, o empuxo depende do volume de fluido deslocado pelo objeto imerso, que é, por sua vez, uma função do volume do próprio cilindro. Explique como essas condições podem influenciar o peso aparente registrado pelo dinamômetro e compare com as observações feitas quando o recipiente tinha um volume similar ao do cilindro. Relacione sua explicação aos conceitos de empuxo, volume deslocado e peso aparente para fundamentar seu raciocínio."
+            },
+            {
+                "id": 4,
+                "question": "Calcule a magnitude da força de empuxo, que é responsável pela redução aparente do peso do cilindro quando submerso no líquido. Para isso, use a seguinte equação: \n\nE = PCFL - PACDL \n\nDetermine o valor de E em Newtons (N), onde: \n\n- PCFL representa o peso do cilindro quando está fora do líquido (peso real medido pelo dinamômetro quando o cilindro está no ar). \n- PACDL indica o peso aparente do cilindro quando ele está totalmente submerso no líquido (peso que é medido pelo dinamômetro enquanto o cilindro está imerso).\n\nApós calcular, substitua os valores que você mediu durante o experimento para obter o empuxo, e explique como as propriedades e características do líquido influenciam esse resultado. Considere aspectos relacionados à densidade do líquido e à própria estrutura do cilindro, explorados por meio do Princípio de Arquimedes, para corroborar sua resposta."
+            },
+            {
+                "id": 5,
+                "question": "Durante o experimento, observamos que ao submergir um objeto, como o cilindro de Arquimedes, na água, ele parece pesar menos, uma ocorrência que descrevemos como uma \"aparente diminuição do peso\". Contudo, essa expressão não implica que o peso do objeto realmente diminuiu. Pelo contrário, o peso real do objeto permanece constante, pois é determinado pela força gravitacional atuando sobre ele, independentemente de estar submerso ou não. A expressão 'aparente' é utilizada para caracterizar a percepção de redução no peso devido à força de empuxo que atua sobre o objeto, que, de acordo com o Princípio de Arquimedes, equivale ao peso do fluido deslocado pelo objeto. Essa força de empuxo contrabalança parcialmente a força gravitacional, criando a ilusão de que o objeto sofreu uma redução de peso. Explique detalhadamente como a força de empuxo afeta a medição do peso pelo dinamômetro e relacione isso à compreensão dos conceitos de força e peso no contexto das ciências naturais."
+            },
+            {
+                "id": 6,
+                "question": "Descreva o impacto da densidade do líquido no experimento de empuxo. Considere a influência da densidade do líquido na magnitude do empuxo sentido pelo cilindro de Arquimedes ao ser submerso. Como variações na densidade da água afetariam a força de empuxo e, por conseguinte, o peso aparente medido? Explique essa relação usando o conceito de peso do fluido deslocado no Princípio de Arquimedes."
+            },
+            {
+                "id": 7,
+                "question": "Se durante o experimento você trocasse a água por outro fluido com densidade diferente, como o comportamento do dinamômetro mudaria? Considere os princípios aprendidos sobre empuxo e densidade. Justifique sua resposta abordando como a densidade do novo fluido afetaria a força de empuxo e, consequentemente, a leitura do peso aparente no dinamômetro."
+            },
+            {
+                "id": 8,
+                "question": "Discuta como possíveis erros na calibração do dinamômetro poderiam afetar as medições de empuxo durante o experimento. Qual é o impacto de uma calibração inadequada no cálculo dos resultados finais? Explique a importância da correta calibração do dinamômetro para assegurar a precisão e confiabilidade das análises e como isso está relacionado à coleta de dados experimentais."
+            },
+            {
+                "id": 9,
+                "question": "Por que é importante garantir que o cilindro está totalmente submerso sem tocar as paredes do béquer durante o experimento? Relacione sua resposta ao conceito de forças externas e ao impacto que a presença de forças adicionais poderia ter sobre a medição do empuxo e a leitura do peso aparente no dinamômetro."
+            }
+        ]
+    },
+    "descrição_do_experimento": "O experimento proposto tem como foco a investigação do conceito de empuxo em corpos imersos em fluidos, utilizando o Princípio de Arquimedes. Será realizada uma série de procedimentos que permitirão observar e compreender como o empuxo atua sobre um cilindro ao ser imerso em água. Para isso, será utilizado um conjunto de materiais que incluem um béquer, água, um suporte universal, um dinamômetro, um cilindro específico para Arquimedes e um recipiente transparente.\n\nCada etapa do experimento é projetada para ilustrar claramente a mudança de força que o cilindro sofre à medida que passa de um ambiente seco para a imersão em água. Inicialmente, o peso do cilindro é medido a seco através de um dinamômetro. Em seguida, o cilindro é imerso em um béquer de água, e o efeito do empuxo é registrado por meio da modificação no peso aparente do cilindro no sistema. Ao encher o recipiente transparente de água, observa-se como o empuxo influencia novamente a medição.\n\nO experimento culmina com a avaliação dos resultados, onde cada participante terá a oportunidade de explorar diferentes aspectos do fenômeno, incluindo o cálculo do empuxo e a interpretação das medições observadas durante as etapas experimentais.",
+    "objetivo_geral": "O objetivo geral deste experimento é proporcionar aos alunos um entendimento prático e teórico do empuxo e do Princípio de Arquimedes. Ao envolver os alunos em atividades práticas de medição e observação, espera-se que eles desenvolvam uma compreensão sólida de como o empuxo atua sobre objetos imersos em fluidos e como isso afeta o peso aparente de um objeto. Além disso, o experimento visa promover a capacidade dos alunos de realizar análises críticas e justificar os fenômenos físicos observados durante a atividade experimental.\n\nAtravés do exame da diminuição aparente do peso do cilindro quando imerso em água e a consequente análise dos resultados, os alunos se familiarizarão com conceitos essenciais da física relacionados à flutuabilidade, densidade e forças dentro de um contexto prático, reforçando suas habilidades de raciocínio científico e resolução de problemas com base em evidências empíricas.",
+    "habilidades_cognitivas": [
+        {
+            "id": 1,
+            "nome": "Calibragem de Instrumentos",
+            "descrição": "Ajustar e calibrar o dinamômetro corretamente antes de realizar medidas para garantir a confiabilidade dos resultados obtidos.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 2,
+            "nome": "Manuseio de Equipamentos de Laboratório",
+            "descrição": "Habilidade para manusear o dinamômetro, béquer, e suporte universal de forma precisa, garantindo que os equipamentos estejam corretamente posicionados e utilizados.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 3,
+            "nome": "Preenchimento de Recipientes",
+            "descrição": "Capacidade de preencher o recipiente com água até o nível desejado, sem derramar, utilizando ferramentas adequadas como pisseta.",
+            "tipo": "habilidade manual"
+        },
+        {
+            "id": 4,
+            "nome": "Coleta de Dados Experimentais",
+            "descrição": "Observar e registrar o peso indicado pelo dinamômetro em diferentes etapas do experimento de forma precisa e cuidadosa.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 5,
+            "nome": "Análise de Resultados",
+            "descrição": "Interpretar os resultados obtidos durante o experimento, analisando como as variáveis experimentais influenciam as medições e relacionando-as ao Princípio de Arquimedes.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 6,
+            "nome": "Justificativa Científica",
+            "descrição": "Capacidade de explicar com base em conceitos de física por que ocorre uma aparente diminuição de peso quando um objeto é imerso em líquido, relacionando o fenômeno ao empuxo.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 7,
+            "nome": "Resolução de Problemas",
+            "descrição": "Aplicar princípios físicos para responder às questões propostas na análise de resultados, como calcular o empuxo e distinguir entre peso real e aparente.",
+            "tipo": "habilidade cognitiva"
+        },
+        {
+            "id": 8,
+            "nome": "Compreensão de Conceitos Científicos",
+            "descrição": "Entender os princípios básicos por trás do empuxo e a razão para a expressão 'aparente diminuição do peso'.",
+            "tipo": "habilidade cognitiva"
+        }
+    ],
+    "conceitos": {
+        "conceitos": [
+            {
+                "id": 1,
+                "nome": "Empuxo",
+                "descrição": "O empuxo é uma força vertical para cima que atua sobre um corpo quando ele está imerso em um fluido, como a água. Ele ocorre devido à diferença de pressão exercida pelo fluido nas partes inferior e superior do corpo. O empuxo é igual ao peso do fluido deslocado pelo corpo e é a razão pela qual objetos flutuam ou aparentam pesar menos quando submersos.",
+                "tipo": "conceito teórico",
+                "já_abordado": false
+            },
+            {
+                "id": 2,
+                "nome": "Princípio de Arquimedes",
+                "descrição": "O Princípio de Arquimedes afirma que um corpo submerso parcial ou totalmente em um fluido em repouso experimenta uma força de empuxo igual ao peso do fluido deslocado por ele. Este princípio explica a flutuação dos corpos e é fundamental para o estudo da hidrostática.",
+                "tipo": "conceito teórico",
+                "já_abordado": false
+            },
+            {
+                "id": 3,
+                "nome": "Medição de forças com dinamômetro",
+                "descrição": "O dinamômetro é um instrumento utilizado para medir forças. Neste experimento, ele é utilizado para registrar o peso do cilindro antes e depois de ser imerso em água, o que permite determinar o empuxo sobre o cilindro.",
+                "tipo": "conceito prático",
+                "já_abordado": true
+            },
+            {
+                "id": 4,
+                "nome": "Densidade do líquido",
+                "descrição": "A densidade de um líquido é a massa por unidade de volume. É uma propriedade intensiva que influencia o valor do empuxo, uma vez que o empuxo é diretamente proporcional à densidade do fluido, de acordo com o Princípio de Arquimedes.",
+                "tipo": "conceito teórico",
+                "já_abordado": false
+            },
+            {
+                "id": 5,
+                "nome": "Peso aparente",
+                "descrição": "É o peso de um objeto quando submerso em um fluido, sendo este o peso real menos a força de empuxo. O conceito de peso aparente permite entender por que objetos parecem pesar menos quando submersos.",
+                "tipo": "conceito teórico",
+                "já_abordado": true
+            },
+            {
+                "id": 6,
+                "nome": "Calibração do dinamômetro",
+                "descrição": "Antes de iniciar medições precisas, é importante calibrar o dinamômetro para garantir que as leituras sejam precisas. Esta etapa garante que o dinamômetro inicie a medição zerada ou com uma referência correta, minimizando erros experimentais.",
+                "tipo": "conceito prático",
+                "já_abordado": true
+            },
+            {
+                "id": 7,
+                "nome": "Hidrostática",
+                "descrição": "É a área da física que estuda os fluidos em repouso e as forças envolvidas, como a pressão e o empuxo. Abrange conceitos fundamentais para compreender fenômenos como flutuação e submersão de corpos em líquidos.",
+                "tipo": "conceito teórico",
+                "já_abordado": false
+            },
+            {
+                "id": 8,
+                "nome": "Deslocamento de fluido",
+                "descrição": "O deslocamento de fluido é processo pelo qual um objeto submerso causa movimentação do fluido que ocupa o volume que o objeto passa a ocupar. Esta é a base para calcular o empuxo segundo o Princípio de Arquimedes.",
+                "tipo": "conceito teórico",
+                "já_abordado": false
+            }
+        ]
+    },
+    "habilidades": {
+        "higly_correlated": [
+            {
+                "area_do_conhecimento": "Ciências da Natureza e suas Tecnologias",
+                "competencias": [
+                    {
+                        "codigo_da_competencia": "3",
+                        "descricao_da_competencia": "Associar intervenções que resultam em degradação ou conservação ambiental a processos produtivos e sociais e a instrumentos ou ações científico-tecnológicos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H10",
+                                "descricao_da_habilidade": "Analisar perturbações ambientais, identificando fontes, transporte e(ou) destino dos poluentes ou prevendo efeitos em sistemas naturais, produtivos ou sociais.",
+                                "relevance_score": 5,
+                                "exemplos_de_aplicacao": [
+                                    "Incluir um módulo interativo onde estudantes possam modelar como derrames e poluentes se espalham por corpos d'água em barragens ou rios. Alterando propriedades como densidade do poluente para prever seu alcance e impacto.",
+                                    "Simulações que permitam aos alunos observar o efeito do movimento da água e do vento sobre a dispersão de poluentes em diferentes ambientes aquáticos, avaliando como essas variáveis influenciam o transporte de contaminantes.",
+                                    "Atividades que explorem o impacto ambiental da introdução de compostos químicos em água, utilizando o princípio de Arquimedes para estudar diferentes densidades e dispersões em rios e lagos."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H12",
+                                "descricao_da_habilidade": "Avaliar impactos em ambientes naturais decorrentes de atividades sociais ou econômicas, considerando interesses contraditórios.",
+                                "relevance_score": 5,
+                                "exemplos_de_aplicacao": [
+                                    "Criar um estudo de caso virtual onde a construção de grandes barragens é avaliada, destacando o impacto na biodiversidade aquática usando modelos que consideram o empuxo e a pressão hidrostática.",
+                                    "Atividades que permitam simular os efeitos de desastres ambientais, como o rompimento de barragens, e examinar o impacto físico e químico no ecossistema aquático resultante, utilizando o princípio de Arquimedes.",
+                                    "Estudar o impacto de práticas agrícolas intensivas em terrenos alagados, criando um ambiente experimental onde os alunos possam analisar o empuxo, sedimentação e movimentação de nutrientes em corpos d'água."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "5",
+                        "descricao_da_competencia": "Entender métodos e procedimentos próprios das ciências naturais e aplicá-los em diferentes contextos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H17",
+                                "descricao_da_habilidade": "Relacionar informações apresentadas em diferentes formas de linguagem e representação usadas nas ciências físicas, químicas ou biológicas, como texto discursivo, gráficos, tabelas, relações matemáticas ou linguagem simbólica.",
+                                "relevance_score": 5,
+                                "exemplos_de_aplicacao": [
+                                    "Os alunos podem criar representações gráficas da variação de empuxo em diferentes condições experimentais, relacionando estas aos conceitos de densidade e massa.",
+                                    "Atividades podem envolver a tradução de dados experimentais em tabelas ou gráficos que representem as mudanças de pressão e empuxo, promovendo a comparação entre diferentes cenários.",
+                                    "O laboratório pode oferecer gráficos interativos mostrando a diferença entre força de empuxo e força peso em diversos líquidos, incentivando a interpretação dessas representações para tomadas de decisão científicas."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H19",
+                                "descricao_da_habilidade": "Avaliar métodos, processos ou procedimentos das ciências naturais que contribuam para diagnosticar ou solucionar problemas de ordem social, econômica ou ambiental.",
+                                "relevance_score": 5,
+                                "exemplos_de_aplicacao": [
+                                    "Os alunos podem simular um cenário em que o empuxo é utilizado para resolver um problema ambiental, como o desenvolvimento de tecnologias para limpar vazamentos de óleo no oceano. Durante o experimento, eles determinam a eficácia de diferentes formas geométricas em flutuar e conter o óleo, aplicando o Princípio de Arquimedes.",
+                                    "Outro exemplo é avaliar métodos físicos de utilizar o empuxo para projetar dispositivos de transporte marinho mais eficientes, simulando o comportamento de diferentes materiais e formatos de casco. Os alunos podem medir como diferentes materiais influenciam o empuxo e determinam a sustentabilidade do projeto.",
+                                    "Os estudantes podem explorar como o empuxo poderia ser utilizado no desenvolvimento de tecnologias para a purificação da água, testando diferentes estruturas de filtro que aproveitam a flutuação para separar contaminantes."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "2",
+                        "descricao_da_competencia": "Identificar a presença e aplicar as tecnologias associadas às ciências naturais em diferentes contextos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H7",
+                                "descricao_da_habilidade": "Selecionar testes de controle, parâmetros ou critérios para a comparação de materiais e produtos.",
+                                "relevance_score": 5,
+                                "exemplos_de_aplicacao": [
+                                    "Durante o experimento do empuxo, os alunos podem simular testes de controle variando a densidade da água (por exemplo, acrescentando sal) e observar como o empuxo muda, comparando estas condições para entender a flutuação de diferentes materiais.",
+                                    "Outra aplicação seria testar diferentes materiais como substitutos do cilindro de Arquimedes, observando como a comparação de pesos aparentes antes e depois da imersão pode informar decisões sobre a escolha de materiais para produtos que interagem com água, como coletes salva-vidas.",
+                                    "Os critérios de seleção de materiais podem envolver testes com diferentes substâncias líquidas e sólidos variados para ver como cada um interage, fazendo uma simulação do controle de qualidade em indústrias de materiais de construção naval, por exemplo."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "medium_correlated": [
+            {
+                "area_do_conhecimento": "Ciências da Natureza e suas Tecnologias",
+                "competencias": [
+                    {
+                        "codigo_da_competencia": "4",
+                        "descricao_da_competencia": "Compreender interações entre organismos e ambiente, em particular aquelas relacionadas à saúde humana, relacionando conhecimentos científicos, aspectos culturais e características individuais.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H13",
+                                "descricao_da_habilidade": "Reconhecer mecanismos de transmissão da vida, prevendo ou explicando a manifestação de características dos seres vivos.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Criar atividades que utilizem o princípio de Arquimedes para demonstrar as condições ideais para a locomoção de micro-organismos aquáticos, integrando tópicos de biologia e física.",
+                                    "Explorações virtuais que permitam aos alunos observar a transmissão de características genéticas através da adaptação de peixes em diferentes níveis de submersão, aplicando o conceito de empuxo.",
+                                    "Simulações sobre a dinâmica de populações aquáticas baseadas no empuxo e no ambiente físico para entender melhor a evolução e adaptação dos organismos em resposta a mudanças ambientais."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "5",
+                        "descricao_da_competencia": "Entender métodos e procedimentos próprios das ciências naturais e aplicá-los em diferentes contextos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H18",
+                                "descricao_da_habilidade": "Relacionar propriedades físicas, químicas ou biológicas de produtos, sistemas ou procedimentos tecnológicos às finalidades a que se destinam.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Uma experiência virtual pode abordar a aplicação de princípios de empuxo e densidade para desenvolver tecnologias submersas, como submarinos e trajes aquáticos para exploração.",
+                                    "Os alunos podem explorar como a densidade e empuxo influenciam no design de dispositivos flutuantes, incentivando a criatividade em inventar produtos que utilizem essas propriedades para otimizar o uso energético.",
+                                    "Discussões práticas podem ser fomentadas sobre como a densidade de materiais impacta sua flutuação em água, relacionando essas propriedades com a criação de tecnologias sustentáveis que interagem com ambientes aquáticos."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "1",
+                        "descricao_da_competencia": "Compreender as ciências naturais e as tecnologias a elas associadas como construções humanas, percebendo seus papéis nos processos de produção e no desenvolvimento econômico e social da humanidade.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H2",
+                                "descricao_da_habilidade": "Associar a solução de problemas de comunicação, transporte, saúde ou outro, com o correspondente desenvolvimento científico e tecnológico.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Compreender a evolução das balanças e dinamômetros nas medições científicas como uma aplicação do desenvolvimento tecnológico pode ser uma exploração rica. Os alunos relacionam o avanço das medições experimentais com melhorias em comunicação e precisa produção em setores industriais.",
+                                    "Os estudantes podem associar os refinamentos na tecnologia de medição, como a aplicação do dinamômetro nos processos industriais, com a melhoria na qualidade do transporte marítimo, explorando como o monitoramento preciso dos parâmetros impulsionou a eficiência logística.",
+                                    "Outra abordagem é usar o laboratório para construir uma representação de como a ciência possibilitou a inovação em engenharia civil aquática, por exemplo, o uso de empuxo para medir cargas em pontes submersas, relacionando à melhoria de comunicação e segurança.",
+                                    "Associar o Princípio de Arquimedes à invenção e aprimoramento de submarinos e explorar o impacto disso na observação e estudo dos oceanos, revelando avanços na comunicação de dados ambientais."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H3",
+                                "descricao_da_habilidade": "Confrontar interpretações científicas com interpretações baseadas no senso comum, ao longo do tempo ou em diferentes culturas.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Uma prática inovadora pode envolver pedir aos alunos que investiguem a evolução das explicações científicas sobre flutuabilidade, desde o Princípio de Arquimedes até conceitos modernos de hidrodinâmica, e comparem esses métodos com crenças e explicações populares ao longo de diferentes épocas.",
+                                    "Dentro do laboratório virtual, os alunos poderiam ser desafiados a distinguir entre o peso aparente de um corpo percebido pelo senso comum e a explicação científica sobre empuxo, levando em consideração a importância cultural e histórica de cada perspectiva.",
+                                    "Usando uma linha do tempo interativa disponível no laboratório, os alunos podem explorar eventos e invenções tecnológicas que emergiram a partir de interpretações científicas corretas e contrastar com o impacto de mitos que prevaleceram mesmo após o estabelecimento de teorias como o Princípio de Arquimedes."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H4",
+                                "descricao_da_habilidade": "Avaliar propostas de intervenção no ambiente, considerando a qualidade da vida humana ou medidas de conservação, recuperação ou utilização sustentável da biodiversidade.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Durante o experimento, cada aluno pode propor uma análise sobre o impacto de introduzir novas práticas sustentáveis em processos industriais que controlam o peso e o empuxo, correlacionando isso com a melhoria da qualidade de vida por meio da redução de poluentes hídricos.",
+                                    "Podem ser desenvolvidas simulações dentro do laboratório que permitem aos alunos testar diferentes cenários de exploração de recursos hídricos versus conservação, utilizando princípios de empuxo e flutuabilidade para identificar soluções sustentáveis.",
+                                    "No laboratório virtual, uma comparação pode ser feita entre o uso de diferentes materiais em boias de segurança (plásticos versus materiais biodegradáveis) e como as propriedades relacionadas ao empuxo afetam o desempenho e a longevidade de tais dispositivos, buscando medidas que favoreçam a conservação do ambiente aquático poluído."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "6",
+                        "descricao_da_competencia": "Apropriar-se de conhecimentos da física para, em situações problema, interpretar, avaliar ou planejar intervenções científico- tecnológicas.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H21",
+                                "descricao_da_habilidade": "Utilizar leis físicas e (ou) químicas para interpretar processos naturais ou tecnológicos inseridos no contexto da termodinâmica e(ou) do eletromagnetismo.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Simular, experimentalmente, como o Princípio de Arquimedes aplica-se em processos de fermentação e sua relação com a lei de Henry, observando a interação entre gases e líquidos.",
+                                    "Explorar o uso do empuxo na explicação do funcionamento de bólides e berlindes no contexto de vibrações magnéticas e termodinâmicas, compreendendo como forças físicas se aplicam a sistemas fechados.",
+                                    "Montar um experimento que simule o comportamento de sistemas refrigentes e de ar condicionado, criando paralelos entre o empuxo e ciclos termodinâmicos para entender e prever a eficiência desses sistemas.",
+                                    "Interpretar processos de destilação de líquidos, similar aos experimentos, mas utilizando o empuxo como base para entender a separação de substâncias através de diferentes fases de densidade e propriedades moleculares."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H23",
+                                "descricao_da_habilidade": "Avaliar possibilidades de geração, uso ou transformação de energia em ambientes específicos, considerando implicações éticas, ambientais, sociais e/ou econômicas.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Analisar o empuxo como uma forma de energia armazenada na diferença de pressão entre as camadas de um fluido. Estimular os alunos a calcular o potencial de utilizar essa força de empuxo em sistemas de geração de energia hídrica pequenos, comparando o impacto ambiental com barramentos maiores.",
+                                    "Simular um cenário onde uma cidade costeira aproveite o empuxo em flotadores duplos para gerar energia elétrica. Os estudantes analisariam o projeto dessa estrutura refletindo sobre as implicações sociais, econômicas e ambientais, como a conservação da fauna marinha.",
+                                    "Explorar a utilização de empuxo em sistemas de dessalinização que funcionam por diferenciação de pressão, discutindo como essa tecnologia pode transformar vidas em áreas áridas com acesso limitado à água potável, e o impacto ambiental desse processo."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "2",
+                        "descricao_da_competencia": "Identificar a presença e aplicar as tecnologias associadas às ciências naturais em diferentes contextos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H6",
+                                "descricao_da_habilidade": "Relacionar informações para compreender manuais de instalação ou utilização de aparelhos, ou sistemas tecnológicos de uso comum.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "O experimento do empuxo pode ser comparado à utilização de manuais que detalham o funcionamento de sistemas de medição e flutuação, onde a compreensão do Princípio de Arquimedes é vital para a instalação ou manutenção de equipamentos como destratificadores de água ou equipamentos de medição hidrostática.",
+                                    "Analisando a maneira como o dinamômetro é calibrado e operado, pode-se correlacionar a leitura e compreensão de manuais técnicos de dispositivos semelhantes que utilizam conceitos de força e pressão, muitas vezes requerendo o mesmo entendimento para garantir precisões nas medições.",
+                                    "Essas habilidades são semelhantes às instruções passo a passo encontradas em manuais de equipamentos de medição de pressão e temperatura utilizados em aquecedores solares, que fazem uso de conceitos como densidade e empuxo."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "3",
+                        "descricao_da_competencia": "Associar intervenções que resultam em degradação ou conservação ambiental a processos produtivos e sociais e a instrumentos ou ações científico-tecnológicos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H8",
+                                "descricao_da_habilidade": "Identificar etapas em processos de obtenção, transformação, utilização ou reciclagem de recursos naturais, energéticos ou matérias-primas, considerando processos biológicos, químicos ou físicos neles envolvidos.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "O experimento pode ser usado como base para a discussão de processos de obtenção e uso de recursos hídricos e suas implicações ambientais através da simulação de momentos em que objetos flutuam ou afundam com base em densidades variáveis.",
+                                    "Podemos imaginar simulações de como resíduos industriais causam variações na densidade da água de rios, impactando o empuxo e a flutuabilidade de objetos naturais e artificiais, usando dados experimentais para prever e entender problemas ambientais a partir de suas causas.",
+                                    "Este laboratório pode também permitir simulação de etapas em processos de tratamento de água, explorando o impacto dessas etapas através de variação de densidade e empuxo experimentais, conectando processos físicos do experimento a sistemas ambientais de larga escala."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H9",
+                                "descricao_da_habilidade": "Compreender a importância dos ciclos biogeoquímicos ou do fluxo de energia para a vida, ou da ação de agentes ou fenômenos que podem causar alterações nesses processos.",
+                                "relevance_score": 4,
+                                "exemplos_de_aplicacao": [
+                                    "Em um experimento que destaca o empuxo, é possível explorar como as mudanças na composição da água afetam o equilíbrio ecológico de um rio, conectando isso a como alterações em densidade impactam no empuxo e consequente flutuação de materiais biológicos, como algas ou detritos.",
+                                    "Outra aplicação interessante seria simular o impacto de mudanças no fluxo de energia em sistemas aquáticos, relacionando como o empuxo interfere na vida aquática e no transporte de nutrientes vital para manter ecossistemas saudáveis.",
+                                    "A compreensão dos ciclos biogeoquímicos pode ser discutida considerando como a densidade afeta a circulação de substâncias em corpos líquidos, influenciando a disponibilidade de nutrientes."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "low_correlated": [
+            {
+                "area_do_conhecimento": "Ciências da Natureza e suas Tecnologias",
+                "competencias": [
+                    {
+                        "codigo_da_competencia": "1",
+                        "descricao_da_competencia": "Compreender as ciências naturais e as tecnologias a elas associadas como construções humanas, percebendo seus papéis nos processos de produção e no desenvolvimento econômico e social da humanidade.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H1",
+                                "descricao_da_habilidade": "Reconhecer características ou propriedades de fenômenos ondulatórios ou oscilatórios, relacionando-os a seus usos em diferentes contextos.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Criar uma simulação no laboratório virtual onde os alunos possam observar o comportamento de ondas em diferentes fluidos, relacionando a vibração do cilindro na água e observando como a profundidade do fluido altera a frequência das oscilações detectadas.",
+                                    "Desenvolver atividades que permitam alterar as propriedades do fluido, como densidade e viscosidade, para estudar seus efeitos sobre ondas de superfície no recipiente de água usado no experimento de Arquimedes.",
+                                    "Implementar um cenário virtual onde ondas sísmicas, como as que ocorrem durante um terremoto, são simuladas para observar o empuxo ou desequilíbrios causados pelas ondas em líquidos confinados em barragens ou lagos."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "3",
+                        "descricao_da_competencia": "Associar intervenções que resultam em degradação ou conservação ambiental a processos produtivos e sociais e a instrumentos ou ações científico-tecnológicos.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H11",
+                                "descricao_da_habilidade": "Reconhecer benefícios, limitações e aspectos éticos da biotecnologia, considerando estruturas e processos biológicos envolvidos em produtos biotecnológicos.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Desenvolver cenários simulados onde diferentes biotecnologias são usadas para limpar corpos d’água contaminados, integrando conceitos de empuxo com tecnologias de biorremediação.",
+                                    "Propor atividades onde os alunos comparariam a eficiência de diferentes métodos biotecnológicos para controlar a flutuação de organismes em soluções aquosas, maximizando o uso do princípio de Arquimedes.",
+                                    "Simulações que integrem o uso de bioprodutos para alterar a densidade de fluidos em ambientes controlados, usando o empuxo para avaliar a separação de compostos biológicos."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "4",
+                        "descricao_da_competencia": "Compreender interações entre organismos e ambiente, em particular aquelas relacionadas à saúde humana, relacionando conhecimentos científicos, aspectos culturais e características individuais.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H14",
+                                "descricao_da_habilidade": "Identificar padrões em fenômenos e processos vitais dos organismos, como manutenção do equilíbrio interno, defesa, relações com o ambiente, sexualidade, entre outros.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Durante o experimento de medição do empuxo, os alunos podem explorar como os seres aquáticos utilizam o empuxo para manter equilíbrio. Simulações podem incluir organismos que se expandem ou contraem para ajustar sua flutuação, similar a como peixes incham suas bexigas natatórias.",
+                                    "Uma atividade prática pode incluir a modelagem de corredores submersos que afetam a flutuação, imitando ambientes naturais onde criaturas evoluíram para sobreviver, incentivando debates sobre adaptações biológicas como resultado de pressões ambientais.",
+                                    "No laboratório virtual, alunos podem medir como a densidade varia em diferentes fluidos recriando cenários onde organismos adaptam suas densidades internas para sobreviver, promovendo uma compreensão dos processos de homeostasia e os sistemas de defesa em contextos aquáticos."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H15",
+                                "descricao_da_habilidade": "Interpretar modelos e experimentos para explicar fenômenos ou processos biológicos em qualquer nível de organização dos sistemas biológicos.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "No experimento, os alunos podem usar modelos para visualizar a relação entre o empuxo e a flutuação em diferentes organismos aquáticos, analisando como os princípios se aplicam em contextos biológicos.",
+                                    "Criação de um experimento virtual que permita manipular as condições de densidade do fluido para observar mudanças no empuxo, levando a discussões sobre processos biológicos como o transporte de nutrientes em organismos subaquáticos.",
+                                    "Analisando gráficos de força e peso aparente, os alunos conseguem interpretar como o empuxo e a densidade afetam sistemas biológicos, usarem simulações para explicar os ajustes biológicos em resposta a mudanças de ambiente."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "6",
+                        "descricao_da_competencia": "Apropriar-se de conhecimentos da física para, em situações problema, interpretar, avaliar ou planejar intervenções científico- tecnológicas.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H20",
+                                "descricao_da_habilidade": "Caracterizar causas ou efeitos dos movimentos de partículas, substâncias, objetos ou corpos celestes.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Os alunos podem usar o empuxo para estudar o movimento de objetos em fluidos e como a densidade do líquido afeta o transporte de partículas. Este estudo poderia simular a otimização de processos industriais, como a sedimentação em tratamento de águas.",
+                                    "Explorações envolvendo partículas podem ser recriadas através do empuxo ao simular como estas influenciam os corpos celestes. A atividade inclui medir o empuxo que grandes corpos exercem nos anéis planetários devido a suas densidades e composições diferentes.",
+                                    "Simular o movimento de substâncias diversas em condições de gravidade zero para compreender como o empuxo impacta o movimento em ambientes espaciais.",
+                                    "Introduzir projetos de simulação de satélites na água usando empuxo, onde a flutuação controla sua posição, permitindo testar como as características de corpos celestes são afetadas por forças externas."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "7",
+                        "descricao_da_competencia": "Apropriar-se de conhecimentos da química para, em situações problema, interpretar, avaliar ou planejar intervenções científico- tecnológicas.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H26",
+                                "descricao_da_habilidade": "Avaliar implicações sociais, ambientais e/ou econômicas na produção ou no consumo de recursos energéticos ou minerais, identificando transformações químicas ou de energia envolvidas nesses processos.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Analisar a substituição entre fluido carregados quimicamente em simulações para modelar processos como galvanoplastia, discutindo os consumos em larga escala e como eles afetam o meio ambiente.",
+                                    "Permitir que os estudantes proponham cenários envolvendo a transformação de materiais através de processos industriais em marinas artificiais, calculando a viabilidade econômica e ambiental da operação.",
+                                    "Avaliar a descarbonização de óleo ao usar substâncias densas e imiscíveis em petróleo, medindo o impacto no empuxo e quantidade de carbono residual."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H27",
+                                "descricao_da_habilidade": "Avaliar propostas de intervenção no meio ambiente aplicando conhecimentos químicos, observando riscos ou benefícios.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Propor uma investigação de como o uso de diferentes líquidos interferentes pode desafiar ou beneficiar o ambiente aquático no experimento do empuxo, avaliando o risco de substâncias potencialmente tóxicas.",
+                                    "Estudar propostas de equipamentos utilizados na imersão e elevação de detritos para remoção de poluição de rios, calculando o empuxo necessário e analisando os riscos associados a ruptura de estruturas ou contaminação química.",
+                                    "Usar o Princípio de Arquimedes para planejar a remoção de contaminantes leves em derramamentos, discutindo agentes químicos que podem ser adicionados para melhorar a promessa de viabilidade das intervenções sem comprometer a ecologia local."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "codigo_da_competencia": "8",
+                        "descricao_da_competencia": "Apropriar-se de conhecimentos da biologia para, em situações problema, interpretar, avaliar ou planejar intervenções científico- tecnológicas.",
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "habilidades": [
+                            {
+                                "codigo_da_habilidade": "H28",
+                                "descricao_da_habilidade": "Associar características adaptativas dos organismos com seu modo de vida ou com seus limites de distribuição em diferentes ambientes, em especial em ambientes brasileiros.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Durante o experimento virtual, os participantes podem ser incentivados a identificar as adaptações dos equipamentos experimentais, como o uso do dinamômetro calibrado e o suporte universal, e associá-los a práticas de laboratório que maximizam a precisão das medições.",
+                                    "Os alunos poderiam realizar simulações comparativas onde variantes do cilindro de Arquimedes são utilizadas para observar como características distintas, tais como densidade e forma, afetam os limites de distribuição do empuxo em uma variedade de líquidos diferentes, muito semelhantes aos estudos de adaptações evolutivas em biologia.",
+                                    "Uma atividade pode ser proposta onde os alunos projetam experimentos para testar o empuxo em condições variáveis, como diferentes salinidades de água, o que pode ser associado à maneira como organismos aquáticos se adaptam a ambientes como águas salobras ou do mar."
+                                ]
+                            },
+                            {
+                                "codigo_da_habilidade": "H30",
+                                "descricao_da_habilidade": "Avaliar propostas de alcance individual ou coletivo, identificando aquelas que visam à preservação e a implementação da saúde individual, coletiva ou do ambiente.",
+                                "relevance_score": 3,
+                                "exemplos_de_aplicacao": [
+                                    "Os alunos podem ser incentivados a aplicar conhecimentos do Princípio de Arquimedes em propostas para melhorar práticas de conservação de água em bacias hidrográficas, exemplificando como essa aplicação em situações práticas pode ajudar a manter o equilíbrio ecológico.",
+                                    "Uma tarefa colaborativa pode envolver os alunos avaliando projetos experimentais que proponham simulações virtuais de soluções sustentáveis que usem a neutralidade do empuxo para a purificação de água, fornecendo críticas embasadas em parâmetros observados no laboratório.",
+                                    "Os participantes poderiam desenvolver um protótipo teórico de um filtro de água adaptado ao uso doméstico que maximize os conceitos de empuxo e densidade, destacando sua eficácia e impacto positivo sobre a saúde pública e o meio ambiente."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "objetivos_de_aprendizagem": {
+        "objetivos_de_aprendizagem": [
+            {
+                "id": 1,
+                "tipo": "Compreensão",
+                "descrição": "Compreender o conceito de empuxo e o Princípio de Arquimedes.",
+                "relação_com_a_prática": "Este objetivo permite que os alunos identifiquem e entendam o papel do empuxo quando o cilindro é imerso em água, reconhecendo como isso impacta as medições de peso feitas durante o experimento.",
+                "procedimentos_relacionados": [
+                    3,
+                    5
+                ],
+                "avaliação_do_objetivo": "Pode ser avaliado por meio da resposta correta e justificada das perguntas 1 e 5 da seção de avaliação dos resultados."
+            },
+            {
+                "id": 2,
+                "tipo": "Aplicação",
+                "descrição": "Aplicar o conhecimento do Princípio de Arquimedes para calcular o empuxo em um corpo imerso em um fluido.",
+                "relação_com_a_prática": "A atividade prática de medição e observação do peso do cilindro em diferentes situações ajuda a solidificar a compreensão teórica e a aplicação prática do Princípio de Arquimedes.",
+                "procedimentos_relacionados": [
+                    1,
+                    2,
+                    3
+                ],
+                "avaliação_do_objetivo": "Será avaliado através do cálculo correto do empuxo na questão 4 da seção de avaliação dos resultados."
+            },
+            {
+                "id": 3,
+                "tipo": "Análise",
+                "descrição": "Analisar como a densidade do fluido influencia o valor do empuxo e as medições de peso aparente.",
+                "relação_com_a_prática": "Durante o experimento, ao observar a mudança no peso medido pelo dinamômetro, os alunos têm a oportunidade de analisar o impacto da densidade do fluido no empuxo.",
+                "procedimentos_relacionados": [
+                    2,
+                    3
+                ],
+                "avaliação_do_objetivo": "Pode ser avaliado através da resposta e justificativa na questão 3 da seção de avaliação dos resultados."
+            },
+            {
+                "id": 4,
+                "tipo": "Síntese",
+                "descrição": "Sintetizar observações experimentais para justificar mudanças no peso aparente de um corpo quando imerso em água.",
+                "relação_com_a_prática": "Esta síntese é necessária para entender e explicar cientificamente por que o peso aparente do cilindro diminui ao ser imerso, integrando teoria e dados experimentais.",
+                "procedimentos_relacionados": [
+                    3,
+                    4,
+                    5
+                ],
+                "avaliação_do_objetivo": "A correta justificativa na questão 5 da seção de avaliação dos resultados demonstra a capacidade de síntese."
+            },
+            {
+                "id": 5,
+                "tipo": "Avaliação",
+                "descrição": "Avaliar os resultados do experimento para determinar a precisão das medições e a conformidade com o Princípio de Arquimedes.",
+                "relação_com_a_prática": "A avaliação crítica dos dados de medição e a reflexão sobre a precisão dos resultados são práticas fundamentais para validar a experiência.",
+                "procedimentos_relacionados": [
+                    4,
+                    5
+                ],
+                "avaliação_do_objetivo": "A capacidade de avaliar resultados será demonstrada nas justificativas apresentadas nas questões 2 e 4 da seção de avaliação dos resultados."
+            }
+        ]
+    },
+    "applicable_knowledge_objects": {
+        "higly_correlated": [
+            {
+                "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "objects": [
+                            {
+                                "object_name": "Observações e mensurações: representação de grandezas físicas como grandezas mensuráveis",
+                                "relevance_score": 5
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                        "objects": [
+                            {
+                                "object_name": "Força de atrito, força peso, força normal de contato e tração",
+                                "relevance_score": 5
+                            },
+                            {
+                                "object_name": "A hidrostática: aspectos históricos e variáveis relevantes",
+                                "relevance_score": 5
+                            },
+                            {
+                                "object_name": "Empuxo",
+                                "relevance_score": 5
+                            },
+                            {
+                                "object_name": "Princípios de Pascal, Arquimedes e Stevin: condições de flutuação, relação entre diferença de nível e pressão hidrostática",
+                                "relevance_score": 5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "medium_correlated": [
+            {
+                "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "objects": [
+                            {
+                                "object_name": "Metodologia de investigação: a procura de regularidades e de sinais na interpretação física do mundo",
+                                "relevance_score": 4
+                            },
+                            {
+                                "object_name": "Conceituação de grandezas vetoriais e escalares",
+                                "relevance_score": 4
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                        "objects": [
+                            {
+                                "object_name": "Conceito de forças externas e internas",
+                                "relevance_score": 4
+                            },
+                            {
+                                "object_name": "Diagramas de forças",
+                                "relevance_score": 4
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "A Mecânica e o funcionamento do Universo",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "A Mecânica e o funcionamento do Universo",
+                        "objects": [
+                            {
+                                "object_name": "Força peso",
+                                "relevance_score": 4
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "low_correlated": [
+            {
+                "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "Conhecimentos básicos e fundamentais",
+                        "objects": [
+                            {
+                                "object_name": "Sistema Internacional de Unidades",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Ferramentas básicas: gráficos e vetores",
+                                "relevance_score": 3
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                        "objects": [
+                            {
+                                "object_name": "Relação histórica entre força e movimento",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Casos especiais de movimentos e suas regularidades observáveis",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Conceito de inércia",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Noção dinâmica de massa e quantidade de movimento (momento linear)",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Força e variação da quantidade de movimento",
+                                "relevance_score": 3
+                            },
+                            {
+                                "object_name": "Leis de Newton",
+                                "relevance_score": 3
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "Energia, trabalho e potência",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "Energia, trabalho e potência",
+                        "objects": [
+                            {
+                                "object_name": "Conceituação de trabalho, energia e potência",
+                                "relevance_score": 3
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "competency_area_name": "A Mecânica e o funcionamento do Universo",
+                "curriculum_component": "Física",
+                "categories": [
+                    {
+                        "category_name": "A Mecânica e o funcionamento do Universo",
+                        "objects": [
+                            {
+                                "object_name": "Aceleração gravitacional",
+                                "relevance_score": 3
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

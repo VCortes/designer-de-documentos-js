@@ -1,0 +1,61 @@
+{
+    "objetivos_de_aprendizagem": [
+        {
+            "id": 1,
+            "tipo": "Compreensão",
+            "descrição": "Compreender o conceito de empuxo e o Princípio de Arquimedes.",
+            "relação_com_a_prática": "Este objetivo permite que os alunos identifiquem e entendam o papel do empuxo quando o cilindro é imerso em água, reconhecendo como isso impacta as medições de peso feitas durante o experimento.",
+            "procedimentos_relacionados": [
+                3,
+                5
+            ],
+            "avaliação_do_objetivo": "Pode ser avaliado por meio da resposta correta e justificada das perguntas 1 e 5 da seção de avaliação dos resultados."
+        },
+        {
+            "id": 2,
+            "tipo": "Aplicação",
+            "descrição": "Aplicar o conhecimento do Princípio de Arquimedes para calcular o empuxo em um corpo imerso em um fluido.",
+            "relação_com_a_prática": "A atividade prática de medição e observação do peso do cilindro em diferentes situações ajuda a solidificar a compreensão teórica e a aplicação prática do Princípio de Arquimedes.",
+            "procedimentos_relacionados": [
+                1,
+                2,
+                3
+            ],
+            "avaliação_do_objetivo": "Será avaliado através do cálculo correto do empuxo na questão 4 da seção de avaliação dos resultados."
+        },
+        {
+            "id": 3,
+            "tipo": "Análise",
+            "descrição": "Analisar como a densidade do fluido influencia o valor do empuxo e as medições de peso aparente.",
+            "relação_com_a_prática": "Durante o experimento, ao observar a mudança no peso medido pelo dinamômetro, os alunos têm a oportunidade de analisar o impacto da densidade do fluido no empuxo.",
+            "procedimentos_relacionados": [
+                2,
+                3
+            ],
+            "avaliação_do_objetivo": "Pode ser avaliado através da resposta e justificativa na questão 3 da seção de avaliação dos resultados."
+        },
+        {
+            "id": 4,
+            "tipo": "Síntese",
+            "descrição": "Sintetizar observações experimentais para justificar mudanças no peso aparente de um corpo quando imerso em água.",
+            "relação_com_a_prática": "Esta síntese é necessária para entender e explicar cientificamente por que o peso aparente do cilindro diminui ao ser imerso, integrando teoria e dados experimentais.",
+            "procedimentos_relacionados": [
+                3,
+                4,
+                5
+            ],
+            "avaliação_do_objetivo": "A correta justificativa na questão 5 da seção de avaliação dos resultados demonstra a capacidade de síntese."
+        },
+        {
+            "id": 5,
+            "tipo": "Avaliação",
+            "descrição": "Avaliar os resultados do experimento para determinar a precisão das medições e a conformidade com o Princípio de Arquimedes.",
+            "relação_com_a_prática": "A avaliação crítica dos dados de medição e a reflexão sobre a precisão dos resultados são práticas fundamentais para validar a experiência.",
+            "procedimentos_relacionados": [
+                4,
+                5
+            ],
+            "avaliação_do_objetivo": "A capacidade de avaliar resultados será demonstrada nas justificativas apresentadas nas questões 2 e 4 da seção de avaliação dos resultados."
+        }
+    ]
+}

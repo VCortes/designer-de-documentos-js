@@ -1,0 +1,187 @@
+{
+    "higly_correlated": [
+        {
+            "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "Conhecimentos básicos e fundamentais",
+                    "objects": [
+                        {
+                            "object_name": "Observações e mensurações: representação de grandezas físicas como grandezas mensuráveis",
+                            "relevance_score": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                    "objects": [
+                        {
+                            "object_name": "Força de atrito, força peso, força normal de contato e tração",
+                            "relevance_score": 5
+                        },
+                        {
+                            "object_name": "A hidrostática: aspectos históricos e variáveis relevantes",
+                            "relevance_score": 5
+                        },
+                        {
+                            "object_name": "Empuxo",
+                            "relevance_score": 5
+                        },
+                        {
+                            "object_name": "Princípios de Pascal, Arquimedes e Stevin: condições de flutuação, relação entre diferença de nível e pressão hidrostática",
+                            "relevance_score": 5
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "medium_correlated": [
+        {
+            "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "Conhecimentos básicos e fundamentais",
+                    "objects": [
+                        {
+                            "object_name": "Metodologia de investigação: a procura de regularidades e de sinais na interpretação física do mundo",
+                            "relevance_score": 4
+                        },
+                        {
+                            "object_name": "Conceituação de grandezas vetoriais e escalares",
+                            "relevance_score": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                    "objects": [
+                        {
+                            "object_name": "Conceito de forças externas e internas",
+                            "relevance_score": 4
+                        },
+                        {
+                            "object_name": "Diagramas de forças",
+                            "relevance_score": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "A Mecânica e o funcionamento do Universo",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "A Mecânica e o funcionamento do Universo",
+                    "objects": [
+                        {
+                            "object_name": "Força peso",
+                            "relevance_score": 4
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "low_correlated": [
+        {
+            "competency_area_name": "Ciências da Natureza e suas Tecnologias",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "Conhecimentos básicos e fundamentais",
+                    "objects": [
+                        {
+                            "object_name": "Sistema Internacional de Unidades",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Ferramentas básicas: gráficos e vetores",
+                            "relevance_score": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "O movimento, o equilíbrio e a descoberta de leis físicas",
+                    "objects": [
+                        {
+                            "object_name": "Relação histórica entre força e movimento",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Casos especiais de movimentos e suas regularidades observáveis",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Conceito de inércia",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Noção dinâmica de massa e quantidade de movimento (momento linear)",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Força e variação da quantidade de movimento",
+                            "relevance_score": 3
+                        },
+                        {
+                            "object_name": "Leis de Newton",
+                            "relevance_score": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "Energia, trabalho e potência",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "Energia, trabalho e potência",
+                    "objects": [
+                        {
+                            "object_name": "Conceituação de trabalho, energia e potência",
+                            "relevance_score": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "competency_area_name": "A Mecânica e o funcionamento do Universo",
+            "curriculum_component": "Física",
+            "categories": [
+                {
+                    "category_name": "A Mecânica e o funcionamento do Universo",
+                    "objects": [
+                        {
+                            "object_name": "Aceleração gravitacional",
+                            "relevance_score": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

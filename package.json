@@ -1,0 +1,21 @@
+{
+  "name": "designer-de-documentos",
+  "version": "1.0.0",
+  "description": "Análise de roteiros e documentos",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^16.4.7",
+    "figlet": "^1.8.0",
+    "inquirer": "^8.2.6",
+    "openai": "^4.79.3",
+    "whatwg-url": "^14.1.0",
+    "zod": "^3.24.1"
+  }
+}

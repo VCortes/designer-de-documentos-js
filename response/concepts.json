@@ -1,0 +1,60 @@
+{
+    "conceitos": [
+        {
+            "id": 1,
+            "nome": "Empuxo",
+            "descrição": "O empuxo é uma força vertical para cima que atua sobre um corpo quando ele está imerso em um fluido, como a água. Ele ocorre devido à diferença de pressão exercida pelo fluido nas partes inferior e superior do corpo. O empuxo é igual ao peso do fluido deslocado pelo corpo e é a razão pela qual objetos flutuam ou aparentam pesar menos quando submersos.",
+            "tipo": "conceito teórico",
+            "já_abordado": false
+        },
+        {
+            "id": 2,
+            "nome": "Princípio de Arquimedes",
+            "descrição": "O Princípio de Arquimedes afirma que um corpo submerso parcial ou totalmente em um fluido em repouso experimenta uma força de empuxo igual ao peso do fluido deslocado por ele. Este princípio explica a flutuação dos corpos e é fundamental para o estudo da hidrostática.",
+            "tipo": "conceito teórico",
+            "já_abordado": false
+        },
+        {
+            "id": 3,
+            "nome": "Medição de forças com dinamômetro",
+            "descrição": "O dinamômetro é um instrumento utilizado para medir forças. Neste experimento, ele é utilizado para registrar o peso do cilindro antes e depois de ser imerso em água, o que permite determinar o empuxo sobre o cilindro.",
+            "tipo": "conceito prático",
+            "já_abordado": true
+        },
+        {
+            "id": 4,
+            "nome": "Densidade do líquido",
+            "descrição": "A densidade de um líquido é a massa por unidade de volume. É uma propriedade intensiva que influencia o valor do empuxo, uma vez que o empuxo é diretamente proporcional à densidade do fluido, de acordo com o Princípio de Arquimedes.",
+            "tipo": "conceito teórico",
+            "já_abordado": false
+        },
+        {
+            "id": 5,
+            "nome": "Peso aparente",
+            "descrição": "É o peso de um objeto quando submerso em um fluido, sendo este o peso real menos a força de empuxo. O conceito de peso aparente permite entender por que objetos parecem pesar menos quando submersos.",
+            "tipo": "conceito teórico",
+            "já_abordado": true
+        },
+        {
+            "id": 6,
+            "nome": "Calibração do dinamômetro",
+            "descrição": "Antes de iniciar medições precisas, é importante calibrar o dinamômetro para garantir que as leituras sejam precisas. Esta etapa garante que o dinamômetro inicie a medição zerada ou com uma referência correta, minimizando erros experimentais.",
+            "tipo": "conceito prático",
+            "já_abordado": true
+        },
+        {
+            "id": 7,
+            "nome": "Hidrostática",
+            "descrição": "É a área da física que estuda os fluidos em repouso e as forças envolvidas, como a pressão e o empuxo. Abrange conceitos fundamentais para compreender fenômenos como flutuação e submersão de corpos em líquidos.",
+            "tipo": "conceito teórico",
+            "já_abordado": false
+        },
+        {
+            "id": 8,
+            "nome": "Deslocamento de fluido",
+            "descrição": "O deslocamento de fluido é processo pelo qual um objeto submerso causa movimentação do fluido que ocupa o volume que o objeto passa a ocupar. Esta é a base para calcular o empuxo segundo o Princípio de Arquimedes.",
+            "tipo": "conceito teórico",
+            "já_abordado": false
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+    "name": "Empuxo e o Princípio de Arquimedes",
+    "area_of_knowledge": "Ciências da Natureza e suas Tecnologias",
+    "virtual_laboratory_name": "Empuxo e o Princípio de Arquimedes",
+    "curricular_component": "Física",
+    "script": {
+        "necessary_materials": [
+            {
+                "id": 1,
+                "item": "Béquer"
+            },
+            {
+                "id": 2,
+                "item": "Água"
+            },
+            {
+                "id": 3,
+                "item": "Suporte universal"
+            },
+            {
+                "id": 4,
+                "item": "Dinamômetro"
+            },
+            {
+                "id": 5,
+                "item": "Cilindro de Arquimedes"
+            },
+            {
+                "id": 6,
+                "item": "Recipiente transparente"
+            }
+        ],
+        "procedures": [
+            {
+                "id": 1,
+                "procedure": "VERIFICANDO O PESO DO CILINDRO",
+                "cognitive_hint": "",
+                "intermediate_text": "Coloque o cilindro de Arquimedes na mesa e calibre o dinamômetro. Posicione o cilindro embaixo do recipiente e verifique o seu peso indicado na escala do dinamômetro."
+            },
+            {
+                "id": 2,
+                "procedure": "COLOCANDO O CILINDRO NO BÉQUER",
+                "cognitive_hint": "",
+                "intermediate_text": "Levante o dinamômetro e coloque o béquer embaixo dele. Retorne o dinamômetro para a posição inicial e verifique o peso novamente."
+            },
+            {
+                "id": 3,
+                "procedure": "PREENCHENDO O RECIPIENTE COM ÁGUA",
+                "cognitive_hint": "",
+                "intermediate_text": "Preencha o recipiente transparente com a água que está na pisseta e, em seguida, verifique o peso outra vez."
+            },
+            {
+                "id": 4,
+                "procedure": "DESMONTANDO O EXPERIMENTO",
+                "cognitive_hint": "",
+                "intermediate_text": "Levante o dinamômetro para retornar o béquer para a mesa. Desça o dinamômetro, posicione o cilindro na mesa e esvazie o recipiente. Siga para a seção “Avaliação de Resultados”, neste roteiro, e responda de acordo com o que foi observado no experimento."
+            },
+            {
+                "id": 5,
+                "procedure": "AVALIANDO OS RESULTADOS",
+                "cognitive_hint": "",
+                "intermediate_text": "Siga para a seção “Avaliação de Resultados”, neste roteiro, e responda de acordo com o que foi observado no experimento."
+            }
+        ],
+        "result_analysis": [
+            {
+                "id": 1,
+                "question": "Justifique a aparente diminuição ocorrida no peso do cilindro ao ser imerso na água."
+            },
+            {
+                "id": 2,
+                "question": "Por que, ao preencher o recipiente com água, o peso marcado pelo dinamômetro retorna exatamente ao valor do cilindro quando não estava imerso na água?"
+            },
+            {
+                "id": 3,
+                "question": "Se o volume do recipiente fosse consideravelmente maior que o do cilindro, o comportamento do dinamômetro seria igual ao da questão anterior? Explique."
+            },
+            {
+                "id": 4,
+                "question": "Determine o módulo da força que provocou a aparente diminuição sofrida pelo peso do corpo, denominada empuxo E.\n\nE = PCFL - PACDL\n\nE = _____ N\n\nOnde:\n\nPACDL = Peso aparente do corpo dentro do líquido.\n\nPCFL = Peso aparente do corpo fora do líquido."
+            },
+            {
+                "id": 5,
+                "question": "Justifique o motivo pelo qual usamos a expressão “aparente diminuição sofrida pelo peso do corpo” e não “diminuição do peso do corpo”."
+            }
+        ]
+    }
+}
