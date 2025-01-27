@@ -1,21 +1,20 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
-function ensureDirectoryExistence(filePath) {
-    const dirname = path.dirname(filePath);
-    if (fs.existsSync(dirname)) {
-        return true;
+
+async function ensureDirectoryExistence(filePath) {
+    const dirName = path.dirname(filePath);
+    try {
+        await fs.access(dirName);
+    } catch (e) {
+        // Se deu erro de acesso, tentar criar recursivamente
+        await fs.mkdir(dirName, { recursive: true });
     }
-    fs.mkdirSync(dirname, { recursive: true });
 }
-function saveResponseToFile(responsePath, content) {
-    ensureDirectoryExistence(responsePath);
+
+async function saveResponseToFile(responsePath, content) {
+    await ensureDirectoryExistence(responsePath);
     const response = JSON.stringify(content, null, 4);
-    fs.writeFile(responsePath, response, 'utf8', (err) => {
-        if (err) {
-            console.error('Erro ao salvar o arquivo JSON:', err);
-        } else {
-            console.log('Arquivo JSON salvo com sucesso!');
-        }
-    });
+    await fs.writeFile(responsePath, response, 'utf8');
+    console.log('Arquivo JSON salvo com sucesso!');
 }
 module.exports = saveResponseToFile;

@@ -1,5 +1,5 @@
 const OpenAI = require('openai');
-async function generateOutput(systemPrompt, userContent) {
+async function generateOutput(systemPrompt, userContent, includeUsage = false) {
     try {
         // Configuração da API do OpenAI
         const openai = new OpenAI({
@@ -14,7 +14,17 @@ async function generateOutput(systemPrompt, userContent) {
         });
         // Extrair a resposta estruturada
         const message = response.choices[0].message.content;
-        return message;
+        if (includeUsage) {
+            const promptTokens = response.usage.prompt_tokens;
+            const completionTokens = response.usage.completion_tokens;
+            return {
+                message: message,
+                promptTokens: promptTokens,
+                completionTokens: completionTokens,
+            };
+        } else {
+            return message;
+        }
     } catch (error) {
         console.error('Erro ao chamar a API do OpenAI:', error);
         return error;

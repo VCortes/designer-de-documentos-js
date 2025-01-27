@@ -2,7 +2,7 @@ const OpenAI = require('openai');
 const { zodResponseFormat } = require('openai/helpers/zod');
 // Dotenv
 // Função para gerar a saída estruturada
-async function generateStructuredOutput(systemPrompt, schema, userContent) {
+async function generateStructuredOutput(systemPrompt, schema, userContent, includeUsage = false) {
     try {
         // Configuração da API do OpenAI
         const openai = new OpenAI({
@@ -23,7 +23,17 @@ async function generateStructuredOutput(systemPrompt, schema, userContent) {
             console.error('Recusa da API:', message.refusal);
             return null;
         }
-        return JSON.parse(message);
+        if (includeUsage) {
+            const promptTokens = response.usage.prompt_tokens;
+            const completionTokens = response.usage.completion_tokens;
+            return {
+                message: JSON.parse(message),
+                promptTokens: promptTokens,
+                completionTokens: completionTokens,
+            };
+        } else {
+            return JSON.parse(message);
+        }
     } catch (error) {
         console.error('Erro ao chamar a API do OpenAI:', error);
         return error;

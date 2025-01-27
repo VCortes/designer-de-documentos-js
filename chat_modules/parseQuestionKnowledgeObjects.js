@@ -17,13 +17,23 @@ const disciplineMap = {
     'ciencias-humanas': 'Ciências Humanas e suas Tecnologias',
     linguagens: 'Linguagem, Códigos e suas Tecnologias',
 };
+const tokenRecords = {
+    quantitity: 0,
+    completionTokens: 0,
+    promptTokens: 0,
+};
 async function parseQuestionKnowledgeObjects() {
     // Carregar questões
     const questions = require('../data/enem-questions.json');
     // Filtrar por questões entre 2014 e 2024
-    const filteredQuestions = questions.filter(
+    const preFilteredQuestions = questions.filter(
         (question) => question.year >= 2014 && question.year <= 2024
     );
+    // Filtrar questões que ainda não possuem objetos de conhecimento
+    const filteredQuestions = preFilteredQuestions.filter(
+        (question) => !question.knowledge_objects
+    );
+    //! Debug
     // Orderar aleatoriamente as questões
     filteredQuestions.sort(() => Math.random() - 0.5);
     // Validar questões
@@ -32,8 +42,8 @@ async function parseQuestionKnowledgeObjects() {
     const knowledgeObjects = require('../data/knowledgeObjects.json');
     // Validação dos objetos de conhecimento
     validateKnowledgeObjects(knowledgeObjects, KnowledgeObjectListFile);
-    // Para cada questão
-    for (const question of filteredQuestions.slice(0, 1)) {
+    //! Para cada questão (Debug)
+    for (const question of filteredQuestions.slice(0, 10)) {
         // Filtrar objetos de conhecimento da disciplina
         const targetArea = disciplineMap[question.discipline];
         const matchedAreas = knowledgeObjects.áreas_de_competência.filter(
@@ -62,6 +72,7 @@ async function parseQuestionKnowledgeObjects() {
         });
         // Para cada elemento em questionKnowledgeObjects
         const matchedKnowledgeObjects = [];
+        //! Debug
         for (const knowledgeObjectCategory of questionKnowledgeObjects.slice(0, 1)) {
             const systemPrompt1 = `# Dados para serem trabalhados
 
@@ -73,7 +84,7 @@ ${JSON.stringify(knowledgeObjectCategory)}
 
 # Exemplos reais
 
-Aqui estão exemplos de entradas e saídas esperadas para ajudar você a entender o que procurar e formato da resposta:
+Aqui estão exemplos de entradas e saídas esperadas para ajudar você a entender o que procurar e o formato da resposta:
 
 <exemplo_1>
 <objetos_de_conhecimento>
@@ -227,7 +238,7 @@ Forneça sua resposta no seguinte formato:
 
 # Exemplos reais
 
-Exemplo reais estão dentro das tags <exemplo_1>.
+Exemplo reais estão dentro das tags <exemplo_1> e <exemplo_2> no texto acima.
 
 # Lembretes importantes
 
@@ -245,7 +256,14 @@ Por favor, prossiga com sua análise e forneça sua resposta seguindo esta estru
 <questao_enem>
 ${JSON.stringify(question)}
 </questao_enem>`;
-            const output1 = await generateOutput(systemPrompt1, content1);
+            const response1 = await generateOutput(systemPrompt1, content1, true);
+            const output1 = response1.message;
+            const promptTokens = response1.promptTokens;
+            const completionTokens = response1.completionTokens;
+            tokenRecords.promptTokens += promptTokens;
+            tokenRecords.completionTokens += completionTokens;
+            tokenRecords.quantitity += 1;
+
             // Extrair objetos de conhecimento selecionados
             const systemPrompt2 = `Você recebeu uma análise completa que inclui as seções <compreensao>, <raciocínio>, <validação>, <verificação> e, ao final, uma lista dentro da tag <objetos_relacionados> que contém 0 ou mais linhas no formato:
 
@@ -322,11 +340,17 @@ id // category // object
   "selectedObjects": []
 }`;
             const content2 = `# Entrada:\n${output1}`;
-            const output2 = await generateStructuredOutput(
+            const response2 = await generateStructuredOutput(
                 systemPrompt2,
                 KnowledgeObjectsSelection,
-                content2
+                content2,
+                true
             );
+            const output2 = response2.message;
+            const promptTokens2 = response2.promptTokens;
+            const completionTokens2 = response2.completionTokens;
+            tokenRecords.promptTokens += promptTokens2;
+            tokenRecords.completionTokens += completionTokens2;
             matchedKnowledgeObjects.push(...output2.selectedObjects);
         }
         // Salvar objetos de conhecimento selecionados na própria questão
@@ -342,8 +366,8 @@ id // category // object
         }
 
         // Salvar todas as questões atualizadas no arquivo
-        await saveResponseToFile('../data/enem-questions.json', questions);
+        console.table(tokenRecords);
+        await saveResponseToFile('./data/enem-questions.json', questions);
     }
-    console.log('Questões filtradas:', filteredQuestions);
 }
 module.exports = parseQuestionKnowledgeObjects;
