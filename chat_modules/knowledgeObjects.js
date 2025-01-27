@@ -125,7 +125,7 @@ Nome da categoria de objetos de conhecimento: Conhecimentos básicos e fundament
         const category = competencyArea['categorias'][i];
         let categoryText = `Nome da categoria de objetos de conhecimento: ${category['nome']}:\n Objetos de conhecimento:\n`;
         for (const obj of category['objetos']) {
-            categoryText += ` - ${obj}\n`;
+            categoryText += ` - ${obj['objeto']}\n`;
         }
         const content = `# Entrada:\n<KnowledgeObjects>${categoryText}</KnowledgeObjects>`;
         // Supondo que generateStructuredOutput seja similar a generate_chat_output

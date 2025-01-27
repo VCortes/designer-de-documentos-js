@@ -11,9 +11,9 @@ const competencyAndSkills = require('./chat_modules/competencyAndSkills');
 const findQuestions = require('./utils/findQuestions');
 const reviewScript = require('./chat_modules/reviewScript');
 const reviewQuestions = require('./chat_modules/reviewQuestions');
+const parseQuestionKnowledgeObjects = require('./chat_modules/parseQuestionKnowledgeObjects');
 // Configuração do dotenv
 require('dotenv').config();
-
 
 // Definição das opções do menu e suas funções correspondentes
 const menuOptions = [
@@ -26,6 +26,10 @@ const menuOptions = [
     { name: 'Encontrar Questões do ENEM', action: findQuestions },
     { name: 'Revisar Roteiro', action: reviewScript },
     { name: 'Revisar Questões', action: reviewQuestions },
+    {
+        name: 'Associar Questões aos Objetos de Conhecimento',
+        action: parseQuestionKnowledgeObjects,
+    },
 ];
 // Função para exibir o banner inicial
 function exibirBanner() {

@@ -1,4 +1,3 @@
-const { z } = require('zod');
 const generateStructuredOutput = require('../utils/generateStructuredOutput');
 const saveResponseToFile = require('../utils/saveResponseToFile');
 const { SkillsSchema } = require('../entities');

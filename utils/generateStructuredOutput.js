@@ -29,4 +29,5 @@ async function generateStructuredOutput(systemPrompt, schema, userContent) {
         return error;
     }
 }
+
 module.exports = generateStructuredOutput;
