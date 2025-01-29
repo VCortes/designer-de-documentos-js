@@ -31,6 +31,22 @@
             margin: 0 auto;
         }
 
+        /* ======== Estilos para os seletores ======== */
+        .selectors {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .selectors select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         /* ======== Card de cada questão ======== */
         .question-card {
             background: #fff;
@@ -39,6 +55,10 @@
             padding: 25px;
             margin-bottom: 25px;
             transition: box-shadow 0.2s;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
 
         .question-header {
@@ -170,12 +190,13 @@
         }
 
         .knowledge-object-list {
+            margin-top: 10px;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
 
-        .knowledge-object-item {
+        .knowledge-object-category-card {
             background: #fff;
             padding: 15px;
             border-radius: 8px;
@@ -184,16 +205,22 @@
             border-left: 4px solid #2980b9;
         }
 
-        .knowledge-object-category {
-            font-size: 0.9rem;
+        .knowledge-object-category-card h3 {
+            font-size: 1.1rem;
             font-weight: bold;
             color: #2980b9;
             margin-bottom: 8px;
         }
 
-        .knowledge-object-content {
-            font-size: 1rem;
+        .knowledge-object-category-card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .knowledge-object-category-card ul li {
+            margin-bottom: 5px;
             color: #34495e;
+            line-height: 1.5;
         }
 
         /* ======== Estilos para Competência e Habilidade ======== */
@@ -242,6 +269,7 @@
         /* Responsividade */
         @media (max-width: 600px) {
 
+            .knowledge-object-category-card,
             .knowledge-object-item,
             .competence-skill-item {
                 flex: 1 1 100%;
@@ -252,6 +280,9 @@
 
 <body>
     <h1>Questões ENEM</h1>
+    <div class="container" id="selectors-container">
+        <!-- Seletores serão inseridos aqui -->
+    </div>
     <div class="container" id="questions-container">
         <!-- As questões serão inseridas dinamicamente aqui -->
     </div>
@@ -265,6 +296,13 @@
             return marked.parse(sanitized);
         }
         const disciplineToArea = {
+            "ciencias-humanas": "Ciências Humanas e suas Tecnologias",
+            "matematica": "Matemática e suas Tecnologias",
+            "ciencias-natureza": "Ciências da Natureza e suas Tecnologias",
+            "linguagens": "Linguagens, Códigos e suas Tecnologias"
+        };
+        // Mapeamento para exibição no seletor
+        const disciplineOptions = {
             "ciencias-humanas": "Ciências Humanas e suas Tecnologias",
             "matematica": "Matemática e suas Tecnologias",
             "ciencias-natureza": "Ciências da Natureza e suas Tecnologias",
@@ -286,174 +324,257 @@
                 }
                 const questionsData = await questionsResponse.json();
                 const curriculosData = await curriculosResponse.json();
-                // data deve ser um array de objetos de questão
-                const container = document.getElementById('questions-container');
-                // Filtra apenas as questões que têm a propriedade "knowledge_objects"
-                const filteredQuestions = questionsData.filter(q =>
-                    q.knowledge_objects && q.knowledge_objects.length > 0
-                );
-                // Ordena as questões por numSeqYearIndex
-                filteredQuestions.sort((a, b) => a.numSeqYearIndex - b.numSeqYearIndex);
-                // Remove duplicatas (questões com mesmo numSeqYearIndex)
-                const uniqueQuestions = [];
-                const uniqueIndices = [];
-                filteredQuestions.forEach(question => {
-                    if (!uniqueIndices.includes(question.numSeqYearIndex)) {
-                        uniqueQuestions.push(question);
-                        uniqueIndices.push(question.numSeqYearIndex);
+                // Obter os anos disponíveis nas questões
+                const yearsSet = new Set();
+                questionsData.forEach(q => {
+                    if (q.year) {
+                        yearsSet.add(q.year);
                     }
                 });
-                console.log(`Questões repetidas: ${filteredQuestions.length - uniqueQuestions.length}`);
-                uniqueQuestions.forEach(question => {
-                    // Cria elemento para a questão
-                    const card = document.createElement('div');
-                    card.className = 'question-card';
-                    // Header (título, disciplina, etc.)
-                    const headerDiv = document.createElement('div');
-                    headerDiv.className = 'question-header';
-                    const titleElem = document.createElement('h2');
-                    titleElem.textContent = question.title;
-                    const infoElem = document.createElement('div');
-                    infoElem.className = 'info';
-                    infoElem.textContent = `Disciplina: ${question.discipline} | Dificuldade: ${question.difficulty} | ID: ${question.numSeqYearIndex}`;
-                    headerDiv.appendChild(titleElem);
-                    headerDiv.appendChild(infoElem);
-                    // Corpo (enunciado, alternativasIntroduction, imagens, etc.)
-                    const bodyDiv = document.createElement('div');
-                    bodyDiv.className = 'question-body';
-                    // Renderiza o enunciado (context) em Markdown
-                    if (question.context) {
-                        const contextHTML = renderMarkdown(question.context);
-                        bodyDiv.innerHTML += contextHTML;
+                const years = Array.from(yearsSet).sort((a, b) => b - a); // Ordena do mais recente para o mais antigo
+                // Criar os seletores
+                const selectorsContainer = document.getElementById('selectors-container');
+                const selectorsDiv = document.createElement('div');
+                selectorsDiv.className = 'selectors';
+                // Seletor de Ano
+                const yearSelect = document.createElement('select');
+                yearSelect.id = 'year-select';
+                const yearDefaultOption = document.createElement('option');
+                yearDefaultOption.value = '';
+                yearDefaultOption.textContent = 'Selecione o Ano';
+                yearSelect.appendChild(yearDefaultOption);
+                years.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearSelect.appendChild(option);
+                });
+                selectorsDiv.appendChild(yearSelect);
+                // Seletor de Disciplina
+                const disciplineSelect = document.createElement('select');
+                disciplineSelect.id = 'discipline-select';
+                const disciplineDefaultOption = document.createElement('option');
+                disciplineDefaultOption.value = '';
+                disciplineDefaultOption.textContent = 'Selecione a Disciplina';
+                disciplineSelect.appendChild(disciplineDefaultOption);
+                for (const key in disciplineOptions) {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = disciplineOptions[key];
+                    disciplineSelect.appendChild(option);
+                }
+                selectorsDiv.appendChild(disciplineSelect);
+                selectorsContainer.appendChild(selectorsDiv);
+                // Adicionar event listeners aos seletores
+                yearSelect.addEventListener('change', () => {
+                    loadQuestions(questionsData, curriculosData);
+                });
+                disciplineSelect.addEventListener('change', () => {
+                    loadQuestions(questionsData, curriculosData);
+                });
+                // Função para carregar e exibir as questões conforme os filtros
+                function loadQuestions(questionsData, curriculosData) {
+                    const selectedYear = yearSelect.value;
+                    const selectedDiscipline = disciplineSelect.value;
+                    const container = document.getElementById('questions-container');
+                    container.innerHTML = ''; // Limpa as questões anteriores
+                    if (!selectedYear || !selectedDiscipline) {
+                        // Se ambos não estiverem selecionados, não faz nada
+                        return;
                     }
-                    // Renderiza alternativesIntroduction em Markdown, se existir
-                    if (question.alternativesIntroduction) {
-                        const introDiv = document.createElement('div');
-                        introDiv.className = 'alternatives-introduction';
-                        introDiv.innerHTML = renderMarkdown(question.alternativesIntroduction);
-                        bodyDiv.appendChild(introDiv);
-                    }
-                    // Alternativas
-                    const alternativesDiv = document.createElement('div');
-                    alternativesDiv.className = 'alternatives';
-                    const altTitle = document.createElement('strong');
-                    altTitle.textContent = "Alternativas:";
-                    alternativesDiv.appendChild(altTitle);
-                    const ul = document.createElement('ul');
-                    question.alternatives.forEach(alt => {
-                        const li = document.createElement('li');
-                        const letterSpan = document.createElement('span');
-                        letterSpan.className = 'alternative-letter';
-                        letterSpan.textContent = alt.letter + ')';
-                        const contentDiv = document.createElement('div');
-                        contentDiv.className = 'alternative-content';
-                        if (alt.text) {
-                            // Renderiza o texto em Markdown
-                            contentDiv.innerHTML = renderMarkdown(alt.text);
-                        }
-                        if (alt.file) {
-                            const img = document.createElement('img');
-                            img.src = alt.file;
-                            img.alt = `Alternativa ${alt.letter}`;
-                            contentDiv.appendChild(img);
-                        }
-                        li.appendChild(letterSpan);
-                        li.appendChild(contentDiv);
-                        ul.appendChild(li);
-                    });
-                    alternativesDiv.appendChild(ul);
-                    // Botão para exibir resposta correta
-                    const buttonShowAnswer = document.createElement('button');
-                    buttonShowAnswer.className = 'button-show-answer';
-                    buttonShowAnswer.textContent = 'Mostrar Resposta Correta';
-                    // Elemento que exibirá a resposta
-                    const correctAnswerDiv = document.createElement('div');
-                    correctAnswerDiv.className = 'correct-answer';
-                    correctAnswerDiv.textContent = 'Resposta Correta: ' + question.correctAlternative;
-                    buttonShowAnswer.addEventListener('click', () => {
-                        if (correctAnswerDiv.style.display === 'none' || correctAnswerDiv.style.display === '') {
-                            correctAnswerDiv.style.display = 'block';
-                            buttonShowAnswer.textContent = 'Ocultar Resposta';
-                        } else {
-                            correctAnswerDiv.style.display = 'none';
-                            buttonShowAnswer.textContent = 'Mostrar Resposta Correta';
-                        }
-                    });
-                    // Objetos de conhecimento
-                    const knowledgeDiv = document.createElement('div');
-                    knowledgeDiv.className = 'knowledge-objects';
-                    const knowledgeTitle = document.createElement('strong');
-                    knowledgeTitle.textContent = "Objetos de Conhecimento:";
-                    knowledgeDiv.appendChild(knowledgeTitle);
-                    const knowledgeList = document.createElement('div');
-                    knowledgeList.className = 'knowledge-object-list';
-                    question.knowledge_objects.forEach(obj => {
-                        const item = document.createElement('div');
-                        item.className = 'knowledge-object-item';
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'knowledge-object-category';
-                        categoryDiv.textContent = obj.category;
-                        const contentDiv = document.createElement('div');
-                        contentDiv.className = 'knowledge-object-content';
-                        contentDiv.textContent = obj.object;
-                        item.appendChild(categoryDiv);
-                        item.appendChild(contentDiv);
-                        knowledgeList.appendChild(item);
-                    });
-                    knowledgeDiv.appendChild(knowledgeList);
-                    // Competência e Habilidade
-                    const competenceDiv = document.createElement('div');
-                    competenceDiv.className = 'competence-skill';
-                    const competenceTitle = document.createElement('strong');
-                    competenceTitle.textContent = "Competência e Habilidade:";
-                    competenceDiv.appendChild(competenceTitle);
-                    const competenceList = document.createElement('div');
-                    competenceList.className = 'competence-skill-list';
-                    // Encontrar a habilidade correspondente no curriculos.json
-                    const skillCode = 'H' + question.skill;
-                    // Obtemos a áreas de conhecimento a partir do mapeamento
-                    const areaConhecimento = disciplineToArea[question.discipline] || "";
-                    // Fazemos a busca levando em conta tanto o 'Código da Habilidade' quanto a 'Área de Conhecimento'
-                    const skillData = curriculosData.find(item =>
-                        item['Currículo'] === 'ENEM' &&
-                        item['Código da Habilidade'] === skillCode &&
-                        item['Área de Conhecimento'] === areaConhecimento
+                    // Filtrar as questões conforme o ano e disciplina selecionados
+                    let filteredQuestions = questionsData.filter(q =>
+                        q.year === parseInt(selectedYear) && q.discipline === selectedDiscipline &&
+                        q.knowledge_objects && q.knowledge_objects.length >= 0
                     );
-                    if (skillData) {
-                        const item = document.createElement('div');
-                        item.className = 'competence-skill-item';
-                        const areaP = document.createElement('p');
-                        areaP.innerHTML = `<span class="label">Área de Conhecimento:</span> ${skillData['Área de Conhecimento']}`;
-                        const competenciaP = document.createElement('p');
-                        competenciaP.innerHTML = `<span class="label">Descrição da Competência:</span> ${skillData['Descrição da Competência']}`;
-                        const codigoHabilidadeP = document.createElement('p');
-                        codigoHabilidadeP.innerHTML = `<span class="label">Código da Habilidade:</span> ${skillData['Código da Habilidade']}`;
-                        const descHabilidadeP = document.createElement('p');
-                        descHabilidadeP.innerHTML = `<span class="label">Descrição da Habilidade:</span> ${skillData['Descrição da Habilidade']}`;
-                        item.appendChild(areaP);
-                        item.appendChild(competenciaP);
-                        item.appendChild(codigoHabilidadeP);
-                        item.appendChild(descHabilidadeP);
-                        competenceList.appendChild(item);
-                    } else {
-                        const item = document.createElement('div');
-                        item.className = 'competence-skill-item';
-                        const notFoundP = document.createElement('p');
-                        notFoundP.textContent = 'Informações sobre a competência e habilidade não encontradas.';
-                        item.appendChild(notFoundP);
-                        competenceList.appendChild(item);
+                    // Ordena as questões por numSeqYearIndex
+                    filteredQuestions.sort((a, b) => a.numSeqYearIndex - b.numSeqYearIndex);
+                    // Remove duplicatas (questões com mesmo numSeqYearIndex)
+                    const uniqueQuestions = [];
+                    const uniqueIndices = [];
+                    filteredQuestions.forEach(question => {
+                        if (!uniqueIndices.includes(question.numSeqYearIndex)) {
+                            uniqueQuestions.push(question);
+                            uniqueIndices.push(question.numSeqYearIndex);
+                        }
+                    });
+                    console.log(`Questões repetidas: ${filteredQuestions.length - uniqueQuestions.length}`);
+                    if (uniqueQuestions.length === 0) {
+                        const noQuestionsMsg = document.createElement('p');
+                        noQuestionsMsg.textContent = 'Nenhuma questão encontrada para os filtros selecionados.';
+                        container.appendChild(noQuestionsMsg);
+                        return;
                     }
-                    competenceDiv.appendChild(competenceList);
-                    // Monta a estrutura no card
-                    card.appendChild(headerDiv);
-                    card.appendChild(bodyDiv);
-                    card.appendChild(alternativesDiv);
-                    card.appendChild(buttonShowAnswer);
-                    card.appendChild(correctAnswerDiv);
-                    card.appendChild(knowledgeDiv);
-                    card.appendChild(competenceDiv);
-                    container.appendChild(card);
-                });
+                    uniqueQuestions.forEach(question => {
+                        // Cria elemento para a questão
+                        const card = document.createElement('div');
+                        card.className = 'question-card';
+                        // Header (título, disciplina, etc.)
+                        const headerDiv = document.createElement('div');
+                        headerDiv.className = 'question-header';
+                        const titleElem = document.createElement('h2');
+                        titleElem.textContent = question.title;
+                        const infoElem = document.createElement('div');
+                        infoElem.className = 'info';
+                        infoElem.textContent = `Disciplina: ${disciplineOptions[question.discipline]} | Dificuldade: ${question.difficulty} | ID: ${question.numSeqYearIndex}`;
+                        headerDiv.appendChild(titleElem);
+                        headerDiv.appendChild(infoElem);
+                        // Corpo (enunciado, alternativesIntroduction, imagens, etc.)
+                        const bodyDiv = document.createElement('div');
+                        bodyDiv.className = 'question-body';
+                        // Renderiza o enunciado (context) em Markdown
+                        if (question.context) {
+                            const contextHTML = renderMarkdown(question.context);
+                            bodyDiv.innerHTML += contextHTML;
+                        }
+                        // Renderiza alternativesIntroduction em Markdown, se existir
+                        if (question.alternativesIntroduction) {
+                            const introDiv = document.createElement('div');
+                            introDiv.className = 'alternatives-introduction';
+                            introDiv.innerHTML = renderMarkdown(question.alternativesIntroduction);
+                            bodyDiv.appendChild(introDiv);
+                        }
+                        // Alternativas
+                        const alternativesDiv = document.createElement('div');
+                        alternativesDiv.className = 'alternatives';
+                        const altTitle = document.createElement('strong');
+                        altTitle.textContent = "Alternativas:";
+                        alternativesDiv.appendChild(altTitle);
+                        const ul = document.createElement('ul');
+                        question.alternatives.forEach(alt => {
+                            const li = document.createElement('li');
+                            const letterSpan = document.createElement('span');
+                            letterSpan.className = 'alternative-letter';
+                            letterSpan.textContent = alt.letter + ')';
+                            const contentDiv = document.createElement('div');
+                            contentDiv.className = 'alternative-content';
+                            if (alt.text) {
+                                // Renderiza o texto em Markdown
+                                contentDiv.innerHTML = renderMarkdown(alt.text);
+                            }
+                            if (alt.file) {
+                                const img = document.createElement('img');
+                                img.src = alt.file;
+                                img.alt = `Alternativa ${alt.letter}`;
+                                contentDiv.appendChild(img);
+                            }
+                            li.appendChild(letterSpan);
+                            li.appendChild(contentDiv);
+                            ul.appendChild(li);
+                        });
+                        alternativesDiv.appendChild(ul);
+                        // Botão para exibir resposta correta
+                        const buttonShowAnswer = document.createElement('button');
+                        buttonShowAnswer.className = 'button-show-answer';
+                        buttonShowAnswer.textContent = 'Mostrar Resposta Correta';
+                        // Elemento que exibirá a resposta
+                        const correctAnswerDiv = document.createElement('div');
+                        correctAnswerDiv.className = 'correct-answer';
+                        correctAnswerDiv.textContent = 'Resposta Correta: ' + question.correctAlternative;
+                        buttonShowAnswer.addEventListener('click', () => {
+                            if (correctAnswerDiv.style.display === 'none' || correctAnswerDiv.style.display === '') {
+                                correctAnswerDiv.style.display = 'block';
+                                buttonShowAnswer.textContent = 'Ocultar Resposta';
+                            } else {
+                                correctAnswerDiv.style.display = 'none';
+                                buttonShowAnswer.textContent = 'Mostrar Resposta Correta';
+                            }
+                        });
+                        // Objetos de conhecimento (agrupados por categoria)
+                        const knowledgeDiv = document.createElement('div');
+                        knowledgeDiv.className = 'knowledge-objects';
+                        const knowledgeTitle = document.createElement('strong');
+                        knowledgeTitle.textContent = "Objetos de Conhecimento:";
+                        knowledgeDiv.appendChild(knowledgeTitle);
+
+                        // Agrupa os objetos de conhecimento por categoria
+                        const knowledgeObjectsByCategory = {};
+                        question.knowledge_objects.forEach(obj => {
+                            if (!knowledgeObjectsByCategory[obj.category]) {
+                                knowledgeObjectsByCategory[obj.category] = [];
+                            }
+                            knowledgeObjectsByCategory[obj.category].push(obj.object);
+                        });
+
+                        const knowledgeList = document.createElement('div');
+                        knowledgeList.className = 'knowledge-object-list';
+
+                        // Para cada categoria, cria um card e lista os objetos com bullets
+                        for (const category in knowledgeObjectsByCategory) {
+                            const categoryCard = document.createElement('div');
+                            categoryCard.className = 'knowledge-object-category-card';
+
+                            const categoryHeading = document.createElement('h3');
+                            categoryHeading.textContent = category;
+
+                            const ul = document.createElement('ul');
+                            knowledgeObjectsByCategory[category].forEach(object => {
+                                const li = document.createElement('li');
+                                li.textContent = object;
+                                ul.appendChild(li);
+                            });
+
+                            categoryCard.appendChild(categoryHeading);
+                            categoryCard.appendChild(ul);
+                            knowledgeList.appendChild(categoryCard);
+                        }
+
+                        knowledgeDiv.appendChild(knowledgeList);
+
+                        // Competência e Habilidade
+                        const competenceDiv = document.createElement('div');
+                        competenceDiv.className = 'competence-skill';
+                        const competenceTitle = document.createElement('strong');
+                        competenceTitle.textContent = "Competência e Habilidade:";
+                        competenceDiv.appendChild(competenceTitle);
+                        const competenceList = document.createElement('div');
+                        competenceList.className = 'competence-skill-list';
+                        // Encontrar a habilidade correspondente no curriculos.json
+                        const skillCode = 'H' + question.skill;
+                        // Obtemos a área de conhecimento a partir do mapeamento
+                        const areaConhecimento = disciplineToArea[question.discipline] || "";
+                        // Fazemos a busca levando em conta tanto o 'Código da Habilidade' quanto a 'Área de Conhecimento'
+                        const skillData = curriculosData.find(item =>
+                            item['Currículo'] === 'ENEM' &&
+                            item['Código da Habilidade'] === skillCode &&
+                            item['Área de Conhecimento'] === areaConhecimento
+                        );
+                        if (skillData) {
+                            const item = document.createElement('div');
+                            item.className = 'competence-skill-item';
+                            const areaP = document.createElement('p');
+                            areaP.innerHTML = `<span class="label">Área de Conhecimento:</span> ${skillData['Área de Conhecimento']}`;
+                            const competenciaP = document.createElement('p');
+                            competenciaP.innerHTML = `<span class="label">Descrição da Competência:</span> ${skillData['Descrição da Competência']}`;
+                            const codigoHabilidadeP = document.createElement('p');
+                            codigoHabilidadeP.innerHTML = `<span class="label">Código da Habilidade:</span> ${skillData['Código da Habilidade']}`;
+                            const descHabilidadeP = document.createElement('p');
+                            descHabilidadeP.innerHTML = `<span class="label">Descrição da Habilidade:</span> ${skillData['Descrição da Habilidade']}`;
+                            item.appendChild(areaP);
+                            item.appendChild(competenciaP);
+                            item.appendChild(codigoHabilidadeP);
+                            item.appendChild(descHabilidadeP);
+                            competenceList.appendChild(item);
+                        } else {
+                            const item = document.createElement('div');
+                            item.className = 'competence-skill-item';
+                            const notFoundP = document.createElement('p');
+                            notFoundP.textContent = 'Informações sobre a competência e habilidade não encontradas.';
+                            item.appendChild(notFoundP);
+                            competenceList.appendChild(item);
+                        }
+                        competenceDiv.appendChild(competenceList);
+                        // Monta a estrutura no card
+                        card.appendChild(headerDiv);
+                        card.appendChild(bodyDiv);
+                        card.appendChild(alternativesDiv);
+                        card.appendChild(buttonShowAnswer);
+                        card.appendChild(correctAnswerDiv);
+                        card.appendChild(knowledgeDiv);
+                        card.appendChild(competenceDiv);
+                        container.appendChild(card);
+                    });
+                }
             })
             .catch(error => {
                 console.error('Erro ao processar JSON:', error);

@@ -12,6 +12,7 @@ const findQuestions = require('./utils/findQuestions');
 const reviewScript = require('./chat_modules/reviewScript');
 const reviewQuestions = require('./chat_modules/reviewQuestions');
 const parseQuestionKnowledgeObjects = require('./chat_modules/parseQuestionKnowledgeObjects');
+const parseQuestionKnowledgeObjects2 = require('./chat_modules/parseQuestionKnowledgeObjects2');
 // Configuração do dotenv
 require('dotenv').config();
 
@@ -29,6 +30,10 @@ const menuOptions = [
     {
         name: 'Associar Questões aos Objetos de Conhecimento',
         action: parseQuestionKnowledgeObjects,
+    },
+    {
+        name: 'Associar Questões aos Objetos de Conhecimento 2',
+        action: parseQuestionKnowledgeObjects2,
     },
 ];
 // Função para exibir o banner inicial
