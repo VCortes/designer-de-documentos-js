@@ -16,6 +16,8 @@ async function generateStructuredOutput(systemPrompt, schema, userContent, inclu
             ],
             // Especificar o formato de resposta estruturada usando o esquema Zod
             response_format: zodResponseFormat(schema, 'response'),
+            temperature: 0.2,
+            top_p: 0.1,
         });
         // Extrair a resposta estruturada
         const message = response.choices[0].message.content;

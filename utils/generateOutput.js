@@ -11,6 +11,8 @@ async function generateOutput(systemPrompt, userContent, includeUsage = false) {
                 { role: 'system', content: systemPrompt },
                 { role: 'user', content: userContent },
             ],
+            temperature: 0.2,
+            top_p: 0.1,
         });
         // Extrair a resposta estruturada
         const message = response.choices[0].message.content;

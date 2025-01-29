@@ -42,8 +42,16 @@ async function parseQuestionKnowledgeObjects() {
     const knowledgeObjects = require('../data/knowledgeObjects.json');
     // Validação dos objetos de conhecimento
     validateKnowledgeObjects(knowledgeObjects, KnowledgeObjectListFile);
+    // Questões para processar
+    const selectedQuestions = filteredQuestions.slice(0, 30);
+    let iteration = 0;
     //! Para cada questão (Debug)
-    for (const question of filteredQuestions.slice(0, 10)) {
+    for (const question of selectedQuestions) {
+        iteration++;
+        console.log(`Progresso: Questão ${iteration} de ${selectedQuestions.length}`);
+        console.log(
+            `Questão ${question.numSeqYearIndex} - ${question.discipline} - ${question.year}`
+        );
         // Filtrar objetos de conhecimento da disciplina
         const targetArea = disciplineMap[question.discipline];
         const matchedAreas = knowledgeObjects.áreas_de_competência.filter(
@@ -70,16 +78,26 @@ async function parseQuestionKnowledgeObjects() {
         const KnowledgeObjectsSelection = z.object({
             selectedObjects: SelectedKnowledgeObjects,
         });
-        // Para cada elemento em questionKnowledgeObjects
+        // Para cada grupo de no máximo 3 elementos em questionKnowledgeObjects
+        const groupedQuestionKnowledgeObjects = questionKnowledgeObjects.reduce((acc, curr, i) => {
+            if (i % 3 === 0) acc.push([]);
+            acc[acc.length - 1].push(curr);
+            return acc;
+        }, []);
         const matchedKnowledgeObjects = [];
-        //! Debug
-        for (const knowledgeObjectCategory of questionKnowledgeObjects.slice(0, 1)) {
+        for (const knowledgeObjectGroup of groupedQuestionKnowledgeObjects) {
+            // Exibe o progresso
+            console.log(
+                `Progresso: grupo ${
+                    groupedQuestionKnowledgeObjects.indexOf(knowledgeObjectGroup) + 1
+                } de ${groupedQuestionKnowledgeObjects.length}`
+            );
             const systemPrompt1 = `# Dados para serem trabalhados
 
 Aqui está a lista de objetos de conhecimento que você deve considerar:
 
 <objetos_de_conhecimento>
-${JSON.stringify(knowledgeObjectCategory)}
+${JSON.stringify(knowledgeObjectGroup)}
 </objetos_de_conhecimento>
 
 # Exemplos reais
@@ -167,7 +185,6 @@ Você é um especialista em taxonomia pedagógica e análise de conteúdos do EN
 
 Sua tarefa é examinar cuidadosamente a questão do ENEM (dentro de <questao_enem>) fornecida e determinar quais objetos de conhecimento da lista fornecida (dentro de <objetos_de_conhecimento>) estão relacionados à questão. Os resultados serão armazenados em um banco de dados, relacionando cada questão do ENEM aos seus respectivos objetos de conhecimento. Isso permitirá, posteriormente, recomendar questões do ENEM que sejam similares a um experimento específico. Assim, após realizarem a prática experimental, os alunos do ensino médio receberão uma lista de questões do ENEM relacionadas a esse experimento.
 
-
 # Passos
 
 # Instruções para Análise de Questão do ENEM
@@ -217,19 +234,19 @@ Forneça sua análise completa mantendo visível todo o processo de raciocínio.
 Forneça sua resposta no seguinte formato:
 
 <compreensao>
-[Inserir aqui. Um parágrafo por objeto de conhecimento]
+[Inserir aqui. Um parágrafo para cada objeto de conhecimento]
 </compreensao>
 
 <raciocínio>
-[Inserir aqui. Um parágrafo por objeto de conhecimento]
+[Inserir aqui. Um parágrafo para cada objeto de conhecimento]
 </raciocínio>
 
 <validação>
-[Inserir aqui. Um parágrafo por objeto de conhecimento]
+[Inserir aqui. Um parágrafo para cada objeto de conhecimento]
 </validação>
 
 <verificação>
-[Inserir aqui. Um parágrafo por objeto de conhecimento]
+[Inserir aqui. Um parágrafo para cada objeto de conhecimento]
 </verificação>
 
 <objetos_relacionados>
