@@ -68,7 +68,7 @@ async function parseQuestionKnowledgeObjects2() {
     // Validação dos objetos de conhecimento
     validateKnowledgeObjects(knowledgeObjects, KnowledgeObjectListFile);
     // Questões para processar
-    const selectedQuestions = filteredQuestions.slice(0, 100);
+    const selectedQuestions = filteredQuestions.slice(0, 200);
     let iteration = 0;
     //! Para cada questão (Debug)
     for (const question of selectedQuestions) {
