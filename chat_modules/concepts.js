@@ -10,7 +10,7 @@ async function getConcepts() {
 
     // Definir o prompt do sistema
     const systemPrompt =
-        "Liste os conceitos teóricos e práticos relacionados com a prática experimental descrita no roteiro de laboratório virtual fornecido. O roteiro é a propriedade `script`. Esses conceitos podem ou não já estar presentes no texto do roteiro. A resposta deve estar no formato json e conter apenas a lista de conceitos. Cada conceito possui id, nome, descrição, tipo ('conceito teórico', 'conceito prático'), e se está presente ou não ('já_abordado':boolean). A descrição deve ser um texto detalhado.";
+        "Liste os conceitos teóricos e práticos relacionados com a prática experimental descrita no roteiro de laboratório virtual fornecido. O roteiro é a propriedade `script`. Esses conceitos podem ou não já estar presentes no texto do roteiro. A resposta deve estar no formato json e conter apenas a lista de conceitos. Cada conceito possui id, nome, descrição, tipo ('conceito teórico', 'conceito prático'), e se está presente ou não ('já_abordado':boolean). A descrição deve ser um texto detalhado."
     // Obter resposta
     try {
         const content = await generateStructuredOutput(

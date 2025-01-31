@@ -13,6 +13,23 @@
     .modal-overlay {
       background-color: rgba(0, 0, 0, 0.5);
     }
+
+    /* Itens selecionáveis */
+    .selectable-item {
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .selectable-item:hover {
+      background-color: #f0f9ff;
+      /* um hover leve */
+    }
+
+    .selected {
+      background-color: #cfeffd !important;
+      /* ou outra cor de destaque */
+      border: 1px solid #38bdf8;
+    }
   </style>
 </head>
 
@@ -33,6 +50,41 @@
 
   <!-- Conteúdo Principal -->
   <main class="container mx-auto px-4 py-12 flex-1">
+
+    <!-- NOVAS SEÇÕES NO INÍCIO DA PÁGINA -->
+
+    <!-- 1) Habilidades e Competências para serem focadas -->
+    <section id="focusHabilidadesCompetencias" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+      <div class="border-b pb-2 mb-4">
+        <h2 class="text-xl font-bold text-indigo-600">
+          Habilidades e Competências para serem focadas
+        </h2>
+        <p class="text-sm text-gray-500">
+          Selecione 0 ou mais itens para focar durante o planejamento
+        </p>
+      </div>
+
+      <div id="focusHabilidadesContainer">
+        <!-- Será preenchido via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 2) Objetos de Conhecimento para serem focados -->
+    <section id="focusObjetosConhecimento" class="relative bg-white rounded-md shadow-md p-6 mb-6">
+      <div class="border-b pb-2 mb-4">
+        <h2 class="text-xl font-bold text-amber-600">
+          Objetos de Conhecimento para serem focados
+        </h2>
+        <p class="text-sm text-gray-500">
+          Selecione 0 ou mais itens de conhecimento
+        </p>
+      </div>
+
+      <div id="focusObjetosContainer">
+        <!-- Será preenchido via JavaScript -->
+      </div>
+    </section>
+
     <!-- Título principal dinâmico -->
     <div class="text-center mb-12">
       <h2 class="text-3xl font-extrabold text-teal-700 mb-3" id="tituloExperimento">
@@ -330,7 +382,7 @@
     let rootModel = null;
     let relatedQuestionsData = null;
 
-    // Para controlar o índice atual de cada habilidade (exemplo: skillCurrentIndex["10"] = 0)
+    // Para controlar o índice atual de cada habilidade (para exibir questões do ENEM)
     const skillCurrentIndex = {};
 
     // Carrega os dois arquivos JSON em paralelo
@@ -348,35 +400,233 @@
         console.error("Erro ao carregar os JSONs:", error);
       });
 
-    // Função principal de renderização
+    // =================== RENDER PRINCIPAL ===================
     function renderAll() {
-      // 1) Preenche dados do final_script.json
       fillFinalScriptData();
+      insertButtonsInHabilidades();  // para ver questões do ENEM
 
-      // 2) Ajusta a lógica para inserir o botão "Ver questões do ENEM" em cada habilidade
-      insertButtonsInHabilidades();
+      // Renderização das seções de foco no topo
+      renderFocusSections();
     }
 
-    // ============ FUNÇÕES DE PARSE E AJUDA =============
+    // =================== SEÇÕES DE FOCO NO TOPO ===================
+    /**
+     * Monta o conteúdo para:
+     * - Habilidades e Competências para serem focadas
+     * - Objetos de Conhecimento para serem focados
+     */
+    function renderFocusSections() {
+      renderFocusHabilidades();
+      renderFocusObjetosConhecimento();
+    }
 
-    // Parseia o campo "context" para substituir ![](URL) por <img src="URL" ... >
-    function parseMarkdownImages(text) {
-      if (!text) return "";
-      // Expressão regular simples para capturar ![](algum_link)
-      return text.replace(
-        /!\[\]\((.*?)\)/g,
-        '<img src="$1" alt="Questão ENEM" class="max-w-full h-auto my-2" />'
+    // 1) Foco em Habilidades e Competências
+    function renderFocusHabilidades() {
+      const container = document.getElementById("focusHabilidadesContainer");
+      container.innerHTML = "";
+
+      if (!rootModel?.script?.habilidades) {
+        container.innerHTML = "<p class='text-gray-600'>Sem dados de habilidades.</p>";
+        return;
+      }
+      const habilidades = rootModel.script.habilidades;
+
+      // Vamos criar sub-seções por nível de correlação
+      renderHabilidadeGroup(
+        container,
+        habilidades.higly_correlated || [],
+        "Correlação Alta",
+        "text-indigo-600"
+      );
+      renderHabilidadeGroup(
+        container,
+        habilidades.medium_correlated || [],
+        "Correlação Média",
+        "text-indigo-500"
+      );
+      renderHabilidadeGroup(
+        container,
+        habilidades.low_correlated || [],
+        "Correlação Baixa",
+        "text-indigo-400"
       );
     }
 
-    // Barra de dificuldade dinâmica em HSL (0->100 => verde->vermelho).
-    function getDifficultyColor(value) {
-      const hue = 120 - (value * 120) / 100;
-      return `hsl(${hue}, 100%, 40%)`;
+    function renderHabilidadeGroup(parent, dataList, titulo, corClasse) {
+      if (!dataList.length) return;
+
+      const section = document.createElement("div");
+      section.classList.add("mb-6");
+      section.innerHTML = `
+        <h3 class="text-lg font-bold ${corClasse} mt-4 mb-2">
+          ${titulo}
+        </h3>
+      `;
+      parent.appendChild(section);
+
+      dataList.forEach((corr) => {
+        const areaDiv = document.createElement("div");
+        areaDiv.classList.add("mb-4", "bg-indigo-50", "p-4", "rounded-md");
+
+        areaDiv.innerHTML = `
+          <p class="text-indigo-700 font-semibold">
+            Área do Conhecimento: ${corr.area_do_conhecimento}
+          </p>
+        `;
+        section.appendChild(areaDiv);
+
+        corr.competencias.forEach((comp) => {
+          const compDiv = document.createElement("div");
+          compDiv.classList.add(
+            "mt-2",
+            "ml-2",
+            "p-2",
+            "border-l-2",
+            "border-indigo-200"
+          );
+          compDiv.innerHTML = `
+            <p class="text-indigo-600 font-semibold">
+              ${comp.codigo_da_competencia} - ${comp.descricao_da_competencia}
+            </p>
+            <p class="text-sm text-indigo-700 mb-2">
+              Categoria: ${comp.category_name}
+            </p>
+          `;
+          areaDiv.appendChild(compDiv);
+
+          comp.habilidades.forEach((hb) => {
+            const hbItem = document.createElement("div");
+            hbItem.classList.add(
+              "ml-3",
+              "mt-1",
+              "bg-white",
+              "rounded",
+              "p-2",
+              "shadow-sm",
+              "selectable-item" // para ficar selecionável
+            );
+
+            // Toggle de seleção
+            hbItem.addEventListener("click", () => {
+              hbItem.classList.toggle("selected");
+            });
+
+            const exemplosUnidos = hb.exemplos_de_aplicacao?.join(" ") || "";
+            hbItem.innerHTML = `
+              <p class="text-sm font-semibold text-indigo-800">
+                ${hb.codigo_da_habilidade} — ${hb.descricao_da_habilidade}
+              </p>
+              <p class="text-xs text-gray-600">
+                Exemplos: ${exemplosUnidos}
+              </p>
+            `;
+            compDiv.appendChild(hbItem);
+          });
+        });
+      });
     }
 
-    // ============ FUNÇÕES PRINCIPAIS =============
+    // 2) Foco em Objetos de Conhecimento
+    function renderFocusObjetosConhecimento() {
+      const container = document.getElementById("focusObjetosContainer");
+      container.innerHTML = "";
 
+      if (!rootModel?.script?.applicable_knowledge_objects) {
+        container.innerHTML = "<p class='text-gray-600'>Sem dados de objetos de conhecimento.</p>";
+        return;
+      }
+      const knowledgeObjects = rootModel.script.applicable_knowledge_objects;
+
+      renderObjetoGroup(
+        container,
+        knowledgeObjects.higly_correlated || [],
+        "Correlação Alta",
+        "text-amber-600"
+      );
+      renderObjetoGroup(
+        container,
+        knowledgeObjects.medium_correlated || [],
+        "Correlação Média",
+        "text-amber-500"
+      );
+      renderObjetoGroup(
+        container,
+        knowledgeObjects.low_correlated || [],
+        "Correlação Baixa",
+        "text-amber-400"
+      );
+    }
+
+    function renderObjetoGroup(parent, dataList, titulo, corClasse) {
+      if (!dataList.length) return;
+
+      const section = document.createElement("div");
+      section.classList.add("mb-6");
+      section.innerHTML = `
+        <h3 class="text-lg font-bold ${corClasse} mt-4 mb-2">
+          ${titulo}
+        </h3>
+      `;
+      parent.appendChild(section);
+
+      dataList.forEach((appK) => {
+        const areaDiv = document.createElement("div");
+        areaDiv.classList.add("mb-4", "bg-amber-50", "p-4", "rounded-md");
+        areaDiv.innerHTML = `
+          <p class="text-amber-700 font-semibold">
+            Área de Competência: ${appK.competency_area_name}
+          </p>
+          <p class="text-sm text-amber-800 mb-2">
+            Componente Curricular: ${appK.curriculum_component}
+          </p>
+        `;
+        section.appendChild(areaDiv);
+
+        (appK.categories || []).forEach((cat) => {
+          const catDiv = document.createElement("div");
+          catDiv.classList.add(
+            "ml-3",
+            "mt-2",
+            "p-2",
+            "border-l-2",
+            "border-amber-200"
+          );
+          catDiv.innerHTML = `
+            <p class="text-amber-600 font-semibold">
+              Categoria: ${cat.category_name}
+            </p>
+          `;
+          areaDiv.appendChild(catDiv);
+
+          (cat.objects || []).forEach((obj) => {
+            const objItem = document.createElement("div");
+            objItem.classList.add(
+              "ml-3",
+              "mt-1",
+              "bg-white",
+              "rounded",
+              "p-2",
+              "shadow-sm",
+              "selectable-item" // para ficar selecionável
+            );
+
+            // Toggle de seleção
+            objItem.addEventListener("click", () => {
+              objItem.classList.toggle("selected");
+            });
+
+            objItem.innerHTML = `
+              <p class="text-sm font-semibold text-amber-800">
+                ${obj.object_name}
+              </p>
+            `;
+            catDiv.appendChild(objItem);
+          });
+        });
+      });
+    }
+
+    // =================== FUNÇÕES DE BASE ===================
     function fillFinalScriptData() {
       // Título
       document.getElementById("tituloExperimento").textContent =
@@ -392,7 +642,7 @@
 
       // Materiais necessários
       const listaMateriais = document.getElementById("listaMateriais");
-      listaMateriais.innerHTML = ""; // limpa qualquer resíduo
+      listaMateriais.innerHTML = "";
       (rootModel?.script?.necessary_materials || []).forEach((mat) => {
         const li = document.createElement("li");
         li.textContent = mat.item;
@@ -406,31 +656,31 @@
         const li = document.createElement("li");
         li.classList.add("ml-6");
         li.innerHTML = `
-            <!-- Marcador da timeline -->
-            <span
-              class="absolute flex items-center justify-center w-8 h-8 bg-sky-100 rounded-full -left-4 ring-4 ring-white"
-            >
-              <span class="text-sky-600 font-bold">
-                ${index + 1}
-              </span>
+          <!-- Marcador da timeline -->
+          <span
+            class="absolute flex items-center justify-center w-8 h-8 bg-sky-100 rounded-full -left-4 ring-4 ring-white"
+          >
+            <span class="text-sky-600 font-bold">
+              ${index + 1}
             </span>
+          </span>
 
-            <!-- Conteúdo do procedimento -->
-            <div
-              class="p-4 bg-sky-50 rounded-md shadow-md hover:shadow-lg transition duration-300"
-            >
-              <h4 class="text-lg font-semibold text-sky-700 mb-1">
-                ${proc.procedure}
-              </h4>
-              <p class="mt-2 text-gray-700">
-                ${proc.intermediate_text}
-              </p>
-              <p class="text-sm text-gray-600 mt-3">
-                <strong class="text-sky-700">Dica cognitiva:</strong>
-                ${proc.cognitive_hint}
-              </p>
-            </div>
-          `;
+          <!-- Conteúdo do procedimento -->
+          <div
+            class="p-4 bg-sky-50 rounded-md shadow-md hover:shadow-lg transition duration-300"
+          >
+            <h4 class="text-lg font-semibold text-sky-700 mb-1">
+              ${proc.procedure}
+            </h4>
+            <p class="mt-2 text-gray-700">
+              ${proc.intermediate_text}
+            </p>
+            <p class="text-sm text-gray-600 mt-3">
+              <strong class="text-sky-700">Dica cognitiva:</strong>
+              ${proc.cognitive_hint}
+            </p>
+          </div>
+        `;
         listaProcedimentos.appendChild(li);
       });
 
@@ -441,35 +691,35 @@
         const li = document.createElement("li");
         li.classList.add("py-4", "flex", "items-start", "space-x-3");
         li.innerHTML = `
-            <!-- Ícone: question mark circle -->
-            <div class="flex-shrink-0">
-              <svg
-                class="w-6 h-6 text-rose-600"
-                fill="none"
+          <!-- Ícone: question mark circle -->
+          <div class="flex-shrink-0">
+            <svg
+              class="w-6 h-6 text-rose-600"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.42 10.24A3.58 3.58 0 0112 6.5a3.58 3.58 0 013.58 3.74c0 1.7-1.08 2.61-2.3 3.38-.4.25-.77.47-1.06.73-.28.26-.5.55-.5 1.15v.5m0 3.25h.01"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
                 stroke="currentColor"
                 stroke-width="1.5"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.42 10.24A3.58 3.58 0 0112 6.5a3.58 3.58 0 013.58 3.74c0 1.7-1.08 2.61-2.3 3.38-.4.25-.77.47-1.06.73-.28.26-.5.55-.5 1.15v.5m0 3.25h.01"
-                />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                ></circle>
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-700">${res.question}</p>
-            </div>
-          `;
+              ></circle>
+            </svg>
+          </div>
+          <div>
+            <p class="text-gray-700">${res.question}</p>
+          </div>
+        `;
         listaResultados.appendChild(li);
       });
 
@@ -487,16 +737,16 @@
           "space-y-2"
         );
         divCard.innerHTML = `
-            <h4 class="text-base font-bold text-orange-600">
-              ${conc.nome} (${conc.tipo})
-            </h4>
-            <p class="text-gray-700">
-              <strong>Descrição:</strong> ${conc.descrição}
-            </p>
-            <p class="text-gray-700">
-              <strong>Já Abordado?</strong> ${conc.já_abordado ? "Sim" : "Não"}
-            </p>
-          `;
+          <h4 class="text-base font-bold text-orange-600">
+            ${conc.nome} (${conc.tipo})
+          </h4>
+          <p class="text-gray-700">
+            <strong>Descrição:</strong> ${conc.descrição}
+          </p>
+          <p class="text-gray-700">
+            <strong>Já Abordado?</strong> ${conc.já_abordado ? "Sim" : "Não"}
+          </p>
+        `;
         listaConceitos.appendChild(divCard);
       });
 
@@ -528,16 +778,16 @@
             "space-y-2"
           );
           divCard.innerHTML = `
-              <h4 class="text-base font-bold text-green-600">
-                Habilidade #${hab.id} — ${hab.nome}
-              </h4>
-              <p class="text-gray-700">
-                <strong>Descrição:</strong> ${hab.descrição}
-              </p>
-              <p class="text-gray-700">
-                <strong>Tipo:</strong> ${hab.tipo}
-              </p>
-            `;
+            <h4 class="text-base font-bold text-green-600">
+              Habilidade #${hab.id} — ${hab.nome}
+            </h4>
+            <p class="text-gray-700">
+              <strong>Descrição:</strong> ${hab.descrição}
+            </p>
+            <p class="text-gray-700">
+              <strong>Tipo:</strong> ${hab.tipo}
+            </p>
+          `;
           gridHabCog.appendChild(divCard);
         });
       }
@@ -548,8 +798,7 @@
       );
       listaObjetivosAprendizagem.innerHTML = "";
       const objetivosAprend =
-        rootModel?.script?.objetivos_de_aprendizagem?.objetivos_de_aprendizagem ||
-        [];
+        rootModel?.script?.objetivos_de_aprendizagem?.objetivos_de_aprendizagem || [];
       objetivosAprend.forEach((obj) => {
         const divCard = document.createElement("div");
         divCard.classList.add(
@@ -560,29 +809,27 @@
           "space-y-1"
         );
         divCard.innerHTML = `
-            <h4 class="text-base font-bold text-cyan-600">
-              Objetivo #${obj.id} (${obj.tipo})
-            </h4>
-            <p class="text-gray-700">
-              <strong>Descrição:</strong> ${obj.descrição}
-            </p>
-            <p class="text-gray-700">
-              <strong>Relação com a Prática:</strong> ${obj.relação_com_a_prática}
-            </p>
-            <p class="text-gray-700">
-              <strong>Procedimentos Relacionados (IDs):</strong> ${obj.procedimentos_relacionados.join(" ")}
-            </p>
-            <p class="text-gray-700">
-              <strong>Avaliação do Objetivo:</strong> ${obj.avaliação_do_objetivo}
-            </p>
-          `;
+          <h4 class="text-base font-bold text-cyan-600">
+            Objetivo #${obj.id} (${obj.tipo})
+          </h4>
+          <p class="text-gray-700">
+            <strong>Descrição:</strong> ${obj.descrição}
+          </p>
+          <p class="text-gray-700">
+            <strong>Relação com a Prática:</strong> ${obj.relação_com_a_prática}
+          </p>
+          <p class="text-gray-700">
+            <strong>Procedimentos Relacionados (IDs):</strong> ${obj.procedimentos_relacionados.join(" ")}
+          </p>
+          <p class="text-gray-700">
+            <strong>Avaliação do Objetivo:</strong> ${obj.avaliação_do_objetivo}
+          </p>
+        `;
         listaObjetivosAprendizagem.appendChild(divCard);
       });
 
       // Habilidades e Competências
-      const habCorrContainer = document.getElementById(
-        "habilidadesCorrelacionadas"
-      );
+      const habCorrContainer = document.getElementById("habilidadesCorrelacionadas");
       habCorrContainer.innerHTML = "";
       const habilidades = rootModel?.script?.habilidades || {};
 
@@ -593,20 +840,22 @@
         const section = document.createElement("div");
         section.classList.add("mb-6");
         section.innerHTML = `
-            <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
-              ${titulo}
-            </h4>
-          `;
+          <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
+            ${titulo}
+          </h4>
+        `;
         habCorrContainer.appendChild(section);
 
         correlationList.forEach((corr) => {
           const areaDiv = document.createElement("div");
           areaDiv.classList.add("mb-4", "bg-indigo-50", "p-4", "rounded-md");
           areaDiv.innerHTML = `
-              <p class="text-indigo-700 font-semibold">
-                Área do Conhecimento: ${corr.area_do_conhecimento}
-              </p>
-            `;
+            <p class="text-indigo-700 font-semibold">
+              Área do Conhecimento: ${corr.area_do_conhecimento}
+            </p>
+          `;
+          section.appendChild(areaDiv);
+
           corr.competencias.forEach((comp) => {
             const compDiv = document.createElement("div");
             compDiv.classList.add(
@@ -617,13 +866,15 @@
               "border-indigo-200"
             );
             compDiv.innerHTML = `
-                <p class="text-indigo-600 font-semibold">
-                  ${comp.codigo_da_competencia} - ${comp.descricao_da_competencia}
-                </p>
-                <p class="text-sm text-indigo-700 mb-2">
-                  Category: ${comp.category_name}
-                </p>
-              `;
+              <p class="text-indigo-600 font-semibold">
+                ${comp.codigo_da_competencia} - ${comp.descricao_da_competencia}
+              </p>
+              <p class="text-sm text-indigo-700 mb-2">
+                Category: ${comp.category_name}
+              </p>
+            `;
+            areaDiv.appendChild(compDiv);
+
             comp.habilidades.forEach((hb) => {
               const hbItem = document.createElement("div");
               hbItem.classList.add(
@@ -638,19 +889,17 @@
               const exemplosUnidos = hb.exemplos_de_aplicacao?.join(" ") || "";
 
               hbItem.innerHTML = `
-                  <p class="text-sm font-semibold text-indigo-800">
-                    ${hb.codigo_da_habilidade} — ${hb.descricao_da_habilidade}
-                  </p>
-                  <p class="text-xs text-gray-600">
-                    Exemplos: ${exemplosUnidos}
-                  </p>
-                  <!-- Aqui entra o botão e container para questões do ENEM -->
-                `;
+                <p class="text-sm font-semibold text-indigo-800">
+                  ${hb.codigo_da_habilidade} — ${hb.descricao_da_habilidade}
+                </p>
+                <p class="text-xs text-gray-600">
+                  Exemplos: ${exemplosUnidos}
+                </p>
+                <!-- Aqui entra o botão e container para questões do ENEM -->
+              `;
               compDiv.appendChild(hbItem);
             });
-            areaDiv.appendChild(compDiv);
           });
-          section.appendChild(areaDiv);
         });
       }
 
@@ -671,12 +920,9 @@
       );
 
       // Objetos de Conhecimento Aplicáveis
-      const objetosConhecimentoContainer = document.getElementById(
-        "objetosConhecimentoList"
-      );
+      const objetosConhecimentoContainer = document.getElementById("objetosConhecimentoList");
       objetosConhecimentoContainer.innerHTML = "";
-      const knowledgeObjects =
-        rootModel?.script?.applicable_knowledge_objects || {};
+      const knowledgeObjects = rootModel?.script?.applicable_knowledge_objects || {};
 
       function renderKnowledgeObjectsByLevel(nivel, titulo, cor) {
         const corrList = knowledgeObjects[nivel] || [];
@@ -685,23 +931,25 @@
         const section = document.createElement("div");
         section.classList.add("mb-6");
         section.innerHTML = `
-            <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
-              ${titulo}
-            </h4>
-          `;
+          <h4 class="text-lg font-bold ${cor} mt-4 mb-2">
+            ${titulo}
+          </h4>
+        `;
         objetosConhecimentoContainer.appendChild(section);
 
         corrList.forEach((appK) => {
           const areaDiv = document.createElement("div");
           areaDiv.classList.add("mb-4", "bg-amber-50", "p-4", "rounded-md");
           areaDiv.innerHTML = `
-              <p class="text-amber-700 font-semibold">
-                Área de Competência: ${appK.competency_area_name}
-              </p>
-              <p class="text-sm text-amber-800 mb-2">
-                Componente Curricular: ${appK.curriculum_component}
-              </p>
-            `;
+            <p class="text-amber-700 font-semibold">
+              Área de Competência: ${appK.competency_area_name}
+            </p>
+            <p class="text-sm text-amber-800 mb-2">
+              Componente Curricular: ${appK.curriculum_component}
+            </p>
+          `;
+          section.appendChild(areaDiv);
+
           (appK.categories || []).forEach((cat) => {
             const catDiv = document.createElement("div");
             catDiv.classList.add(
@@ -712,10 +960,12 @@
               "border-amber-200"
             );
             catDiv.innerHTML = `
-                <p class="text-amber-600 font-semibold">
-                  Categoria: ${cat.category_name}
-                </p>
-              `;
+              <p class="text-amber-600 font-semibold">
+                Categoria: ${cat.category_name}
+              </p>
+            `;
+            areaDiv.appendChild(catDiv);
+
             (cat.objects || []).forEach((obj) => {
               const objItem = document.createElement("div");
               objItem.classList.add(
@@ -727,15 +977,13 @@
                 "shadow-sm"
               );
               objItem.innerHTML = `
-                  <p class="text-sm font-semibold text-amber-800">
-                    ${obj.object_name}
-                  </p>
-                `;
+                <p class="text-sm font-semibold text-amber-800">
+                  ${obj.object_name}
+                </p>
+              `;
               catDiv.appendChild(objItem);
             });
-            areaDiv.appendChild(catDiv);
           });
-          section.appendChild(areaDiv);
         });
       }
 
@@ -756,6 +1004,12 @@
       );
     }
 
+    // ========== Questões do ENEM: Botões "Ver questões" ==========
+
+    /**
+     * Para cada habilidade no bloco de Habilidades e Competências (seção #9),
+     * insere botão "Ver questões do ENEM".
+     */
     function insertButtonsInHabilidades() {
       // Seleciona todos os cards de habilidade criados acima
       const hbItems = document.querySelectorAll(
@@ -813,13 +1067,16 @@
       });
     }
 
-    // Exibe as questões de uma determinada habilidade no container
+    /**
+     * Exibe as questões de ENEM relacionadas à habilidade (skillCode),
+     * dentro do container indicado.
+     */
     function showEnemQuestions(skillCode, container) {
       const key = "H" + skillCode;
       if (!relatedQuestionsData?.root?.[key]) {
         container.innerHTML = `
-            <p class="text-red-600 text-sm mt-2">Nenhuma questão encontrada para a habilidade H${skillCode}</p>
-          `;
+          <p class="text-red-600 text-sm mt-2">Nenhuma questão encontrada para a habilidade H${skillCode}</p>
+        `;
         return;
       }
 
@@ -851,64 +1108,64 @@
       }
 
       container.innerHTML = `
-          <div class="p-3 bg-indigo-50 rounded-md">
-            <div class="flex flex-col space-y-3" id="questionsNav-${skillCode}">
+        <div class="p-3 bg-indigo-50 rounded-md">
+          <div class="flex flex-col space-y-3" id="questionsNav-${skillCode}">
+            
+            <!-- NAV SUPERIOR (botões e select) -->
+            <div class="flex flex-wrap items-center justify-between space-y-2 md:space-y-0">
               
-              <!-- NAV SUPERIOR (botões e select) -->
-              <div class="flex flex-wrap items-center justify-between space-y-2 md:space-y-0">
-                
-                <!-- Bloco de navegação (Anterior, Resposta, Próxima) -->
-                <div class="flex space-x-2">
-                  <button id="prevQuestionBtn-${skillCode}"
-                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
-                    Questão anterior
-                  </button>
+              <!-- Bloco de navegação (Anterior, Resposta, Próxima) -->
+              <div class="flex space-x-2">
+                <button id="prevQuestionBtn-${skillCode}"
+                  class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                  Questão anterior
+                </button>
 
-                  <button id="viewAnswerBtn-${skillCode}"
-                    class="px-3 py-1 bg-yellow-200 rounded hover:bg-yellow-300 text-yellow-800 text-sm">
-                    Ver resposta
-                  </button>
+                <button id="viewAnswerBtn-${skillCode}"
+                  class="px-3 py-1 bg-yellow-200 rounded hover:bg-yellow-300 text-yellow-800 text-sm">
+                  Ver resposta
+                </button>
 
-                  <button id="nextQuestionBtn-${skillCode}"
-                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
-                    Próxima questão
-                  </button>
-                </div>
-
-                <!-- Bloco de seleção de questão: "Ir para a questão X" -->
-                <div class="flex items-center space-x-2">
-                  <label for="questionSelect-${skillCode}"
-                         class="text-sm text-indigo-800 font-medium">
-                    Ir para a questão:
-                  </label>
-                  <select id="questionSelect-${skillCode}"
-                          class="p-1 border rounded text-sm">
-                  </select>
-                  <button id="jumpQuestionBtn-${skillCode}"
-                    class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
-                    Ir
-                  </button>
-                </div>
-
+                <button id="nextQuestionBtn-${skillCode}"
+                  class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                  Próxima questão
+                </button>
               </div>
 
-              <!-- Conteúdo da questão -->
-              <div id="questionContent-${skillCode}"
-                   class="text-sm bg-white p-3 rounded shadow">
+              <!-- Bloco de seleção de questão: "Ir para a questão X" -->
+              <div class="flex items-center space-x-2">
+                <label for="questionSelect-${skillCode}"
+                       class="text-sm text-indigo-800 font-medium">
+                  Ir para a questão:
+                </label>
+                <select id="questionSelect-${skillCode}"
+                        class="p-1 border rounded text-sm">
+                </select>
+                <button id="jumpQuestionBtn-${skillCode}"
+                  class="px-3 py-1 bg-indigo-200 rounded hover:bg-indigo-300 text-indigo-800 text-sm">
+                  Ir
+                </button>
               </div>
 
-              <!-- Contador de questões -->
-              <div id="questionCounter-${skillCode}"
-                   class="text-xs text-gray-700 text-right">
-              </div>
+            </div>
 
-              <!-- Resposta -->
-              <div id="answerBox-${skillCode}"
-                   class="text-sm text-green-700 hidden">
-              </div>
+            <!-- Conteúdo da questão -->
+            <div id="questionContent-${skillCode}"
+                 class="text-sm bg-white p-3 rounded shadow">
+            </div>
+
+            <!-- Contador de questões -->
+            <div id="questionCounter-${skillCode}"
+                 class="text-xs text-gray-700 text-right">
+            </div>
+
+            <!-- Resposta -->
+            <div id="answerBox-${skillCode}"
+                 class="text-sm text-green-700 hidden">
             </div>
           </div>
-        `;
+        </div>
+      `;
 
       const btnPrev = container.querySelector(`#prevQuestionBtn-${skillCode}`);
       const btnNext = container.querySelector(`#nextQuestionBtn-${skillCode}`);
@@ -925,8 +1182,21 @@
         option.textContent = `Questão ${i + 1}`;
         questionSelect.appendChild(option);
       });
-
       questionSelect.value = skillCurrentIndex[skillCode];
+
+      function parseMarkdownImages(text) {
+        if (!text) return "";
+        return text.replace(
+          /!\[\]\((.*?)\)/g,
+          '<img src="$1" alt="Questão ENEM" class="max-w-full h-auto my-2" />'
+        );
+      }
+
+      function getDifficultyColor(value) {
+        // 0 -> verde; 100 -> vermelho
+        const hue = 120 - (value * 120) / 100;
+        return `hsl(${hue}, 100%, 40%)`;
+      }
 
       function renderCurrentQuestion() {
         const idx = skillCurrentIndex[skillCode];
@@ -954,28 +1224,28 @@
             .join("") || "";
 
         questionContent.innerHTML = `
-            <p class="font-semibold mb-2">${questao.title}</p>
+          <p class="font-semibold mb-2">${questao.title}</p>
 
-            <div class="flex items-center space-x-2 mb-3">
-              <span class="text-sm font-medium">Dificuldade: ${difficulty}</span>
-              <div class="w-1/2 bg-gray-200 rounded-full h-2">
-                <div class="h-2 rounded-full"
-                     style="width:${difficulty}%; background-color:${barColor};">
-                </div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="text-sm font-medium">Dificuldade: ${difficulty}</span>
+            <div class="w-1/2 bg-gray-200 rounded-full h-2">
+              <div class="h-2 rounded-full"
+                   style="width:${difficulty}%; background-color:${barColor};">
               </div>
             </div>
+          </div>
 
-            <div class="text-gray-700 mb-2">
-              ${contextWithImages ?? ""}
-            </div>
+          <div class="text-gray-700 mb-2">
+            ${contextWithImages ?? ""}
+          </div>
 
-            <p class="text-sm mb-1">
-              ${questao.alternativesIntroduction ?? ""}
-            </p>
-            <ul class="list-disc list-inside text-sm">
-              ${altHtml}
-            </ul>
-          `;
+          <p class="text-sm mb-1">
+            ${questao.alternativesIntroduction ?? ""}
+          </p>
+          <ul class="list-disc list-inside text-sm">
+            ${altHtml}
+          </ul>
+        `;
 
         answerBox.classList.add("hidden");
         answerBox.innerHTML = "";
@@ -1004,8 +1274,8 @@
         const questao = sortedQuestoes[idx];
         if (!questao) return;
         answerBox.innerHTML = `
-            <p><strong>Resposta Correta:</strong> ${questao.correctAlternative}</p>
-          `;
+          <p><strong>Resposta Correta:</strong> ${questao.correctAlternative}</p>
+        `;
         answerBox.classList.remove("hidden");
       });
 
@@ -1018,16 +1288,14 @@
       });
     }
 
-    // ========== POPUP DE GERAÇÃO DE CONTEÚDO (IA) =============
+    // ========== POPUP DE GERAÇÃO DE CONTEÚDO (IA) ==========
     function openAiPopup(sectionId) {
       document.getElementById("aiSectionInput").value = sectionId;
       document.getElementById("aiPopup").classList.remove("hidden");
     }
-
     function closeAiPopup() {
       document.getElementById("aiPopup").classList.add("hidden");
     }
-
     function regenerateContent() {
       const form = document.getElementById("aiForm");
       const sectionId = form.aiSection.value;
@@ -1043,13 +1311,11 @@
         instructions
       );
 
-      // Aqui você chamaria sua lógica para IA, etc.
-      // ...
-
+      // Aqui você chamaria a lógica de IA (não implementado)
       closeAiPopup();
     }
 
-    // ========== POPUP DE EDIÇÃO DE CONTEÚDO =============
+    // ========== POPUP DE EDIÇÃO DE CONTEÚDO ==========
     function openEditPopup(sectionId) {
       // Limpa o container de campos e define o sectionId em hidden:
       document.getElementById("editDynamicFields").innerHTML = "";
@@ -1070,97 +1336,100 @@
       // Dependendo da seção, podemos exibir formulários diferentes:
       switch (sectionId) {
         case "descricaoExperimento":
-          // Recupera o texto atual
-          const descAtual = document.getElementById("descricaoDoExperimento").textContent;
-          document.getElementById("editDynamicFields").innerHTML = `
-            <label class="block text-sm font-semibold" for="editTextArea">
-              Nova descrição:
-            </label>
-            <textarea id="editTextArea" rows="5"
-              class="w-full p-2 border rounded text-sm">${descAtual}</textarea>
-          `;
+          {
+            const descAtual = document.getElementById("descricaoDoExperimento").textContent;
+            document.getElementById("editDynamicFields").innerHTML = `
+              <label class="block text-sm font-semibold" for="editTextArea">
+                Nova descrição:
+              </label>
+              <textarea id="editTextArea" rows="5"
+                class="w-full p-2 border rounded text-sm">${descAtual}</textarea>
+            `;
+          }
           break;
 
         case "objetivoGeral":
-          const objAtual = document.getElementById("objetivoGeralText").textContent;
-          document.getElementById("editDynamicFields").innerHTML = `
-            <label class="block text-sm font-semibold" for="editTextArea">
-              Novo objetivo geral:
-            </label>
-            <textarea id="editTextArea" rows="5"
-              class="w-full p-2 border rounded text-sm">${objAtual}</textarea>
-          `;
+          {
+            const objAtual = document.getElementById("objetivoGeralText").textContent;
+            document.getElementById("editDynamicFields").innerHTML = `
+              <label class="block text-sm font-semibold" for="editTextArea">
+                Novo objetivo geral:
+              </label>
+              <textarea id="editTextArea" rows="5"
+                class="w-full p-2 border rounded text-sm">${objAtual}</textarea>
+            `;
+          }
           break;
 
         case "materiaisNecessarios":
-          // Exemplo: cada material em um campo ou juntos. Aqui, faremos algo simples:
-          // Lemos a UL e montamos inputs
-          const ulMateriais = document.getElementById("listaMateriais");
-          const liItems = ulMateriais.querySelectorAll("li");
-          let htmlFields = "";
-          liItems.forEach((li, idx) => {
-            htmlFields += `
-              <div class="flex items-center space-x-2 mb-2">
-                <label class="text-sm font-medium">Item ${idx + 1}:</label>
-                <input type="text" class="w-full p-1 border rounded text-sm" 
-                       value="${li.textContent.trim()}"
-                       data-mat-index="${idx}"/>
-              </div>
+          {
+            const ulMateriais = document.getElementById("listaMateriais");
+            const liItems = ulMateriais.querySelectorAll("li");
+            let htmlFields = "";
+            liItems.forEach((li, idx) => {
+              htmlFields += `
+                <div class="flex items-center space-x-2 mb-2">
+                  <label class="text-sm font-medium">Item ${idx + 1}:</label>
+                  <input type="text" class="w-full p-1 border rounded text-sm"
+                         value="${li.textContent.trim()}"
+                         data-mat-index="${idx}"/>
+                </div>
+              `;
+            });
+            document.getElementById("editDynamicFields").innerHTML = `
+              <p class="text-sm font-semibold mb-2">Editar itens de materiais:</p>
+              ${htmlFields || "<p class='text-gray-500'>Nenhum material listado.</p>"}
             `;
-          });
-          // Se quiser permitir adicionar mais, poderia ter um + aqui
-          document.getElementById("editDynamicFields").innerHTML = `
-            <p class="text-sm font-semibold mb-2">Editar itens de materiais:</p>
-            ${htmlFields || "<p class='text-gray-500'>Nenhum material listado.</p>"}
-          `;
+          }
           break;
 
         case "procedimentos":
-          // Exemplo: exibir cada procedimento com textarea
-          const procList = rootModel?.script?.procedures || [];
-          let procHtml = "";
-          procList.forEach((proc, i) => {
-            procHtml += `
-              <div class="mb-3 border-b pb-2">
-                <label class="text-sm font-semibold block">
-                  Passo ${i + 1}:
-                </label>
-                <input type="text" class="w-full p-1 border rounded text-sm mb-1"
-                       data-proc-index="${i}"
-                       value="${proc.procedure.replace(/"/g, "&quot;")}"/>
-                
-                <textarea class="w-full p-1 border rounded text-sm mb-1"
-                          data-proc-intro-index="${i}"
-                          rows="2">${proc.intermediate_text}</textarea>
+          {
+            const procList = rootModel?.script?.procedures || [];
+            let procHtml = "";
+            procList.forEach((proc, i) => {
+              procHtml += `
+                <div class="mb-3 border-b pb-2">
+                  <label class="text-sm font-semibold block">
+                    Passo ${i + 1}:
+                  </label>
+                  <input type="text" class="w-full p-1 border rounded text-sm mb-1"
+                         data-proc-index="${i}"
+                         value="${proc.procedure.replace(/"/g, "&quot;")}"/>
+                  
+                  <textarea class="w-full p-1 border rounded text-sm mb-1"
+                            data-proc-intro-index="${i}"
+                            rows="2">${proc.intermediate_text}</textarea>
 
-                <label class="block text-xs text-gray-600">Dica cognitiva</label>
-                <textarea class="w-full p-1 border rounded text-sm"
-                          data-proc-hint-index="${i}"
-                          rows="2">${proc.cognitive_hint}</textarea>
+                  <label class="block text-xs text-gray-600">Dica cognitiva</label>
+                  <textarea class="w-full p-1 border rounded text-sm"
+                            data-proc-hint-index="${i}"
+                            rows="2">${proc.cognitive_hint}</textarea>
+                </div>
+              `;
+            });
+            document.getElementById("editDynamicFields").innerHTML = `
+              <div>
+                <p class="text-sm font-semibold mb-2">Editar Procedimentos:</p>
+                ${procHtml || "<p class='text-gray-500'>Nenhum procedimento listado.</p>"}
               </div>
             `;
-          });
-          document.getElementById("editDynamicFields").innerHTML = `
-            <div>
-              <p class="text-sm font-semibold mb-2">Editar Procedimentos:</p>
-              ${procHtml || "<p class='text-gray-500'>Nenhum procedimento listado.</p>"}
-            </div>
-          `;
+          }
           break;
 
         default:
-          // Padrão: mostra um textarea com todo o innerHTML
-          const sectionEl = document.getElementById(sectionId);
-          // Exemplo: só pega o primeiro <p> ou algo simples
-          const pEl = sectionEl.querySelector("p, div, ul");
-          const rawText = pEl?.textContent ?? "";
-          document.getElementById("editDynamicFields").innerHTML = `
-            <label class="block text-sm font-semibold" for="editTextArea">
-              Conteúdo da Seção:
-            </label>
-            <textarea id="editTextArea" rows="5"
-              class="w-full p-2 border rounded text-sm">${rawText}</textarea>
-          `;
+          {
+            const sectionEl = document.getElementById(sectionId);
+            const pEl = sectionEl.querySelector("p, div, ul");
+            const rawText = pEl?.textContent ?? "";
+            document.getElementById("editDynamicFields").innerHTML = `
+              <label class="block text-sm font-semibold" for="editTextArea">
+                Conteúdo da Seção:
+              </label>
+              <textarea id="editTextArea" rows="5"
+                class="w-full p-2 border rounded text-sm">${rawText}</textarea>
+            `;
+          }
           break;
       }
 
@@ -1187,7 +1456,6 @@
           break;
         }
         case "materiaisNecessarios": {
-          // Ler cada input e atualizar a UL
           const inputs = document.querySelectorAll("#editDynamicFields input[data-mat-index]");
           const ulMateriais = document.getElementById("listaMateriais");
           ulMateriais.innerHTML = "";
@@ -1199,7 +1467,6 @@
           break;
         }
         case "procedimentos": {
-          // Atualiza nosso rootModel e refaz a renderização
           const procedureInputs = document.querySelectorAll("[data-proc-index]");
           const introInputs = document.querySelectorAll("[data-proc-intro-index]");
           const hintInputs = document.querySelectorAll("[data-proc-hint-index]");
@@ -1208,12 +1475,10 @@
             const index = parseInt(inp.getAttribute("data-proc-index"), 10);
             rootModel.script.procedures[index].procedure = inp.value;
           });
-
           introInputs.forEach((inp) => {
             const index = parseInt(inp.getAttribute("data-proc-intro-index"), 10);
             rootModel.script.procedures[index].intermediate_text = inp.value;
           });
-
           hintInputs.forEach((inp) => {
             const index = parseInt(inp.getAttribute("data-proc-hint-index"), 10);
             rootModel.script.procedures[index].cognitive_hint = inp.value;
@@ -1224,7 +1489,6 @@
           break;
         }
         default: {
-          // Pega o textarea e joga o valor de volta no primeiro <p> ou <div> da seção
           const newText = document.getElementById("editTextArea").value;
           const sectionEl = document.getElementById(sectionId);
           const pEl = sectionEl.querySelector("p, div, ul");

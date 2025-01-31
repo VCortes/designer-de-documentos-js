@@ -55,8 +55,12 @@ async function parseQuestionKnowledgeObjects2() {
         (question) => question.year >= 2014 && question.year <= 2024
     );
     // Filtrar questões que ainda não possuem objetos de conhecimento
-    const filteredQuestions = preFilteredQuestions.filter(
+    const preFilteredQuestions2 = preFilteredQuestions.filter(
         (question) => !question.knowledge_objects
+    );
+    // Filtrar questões que possuem lianguage != null
+    const filteredQuestions = preFilteredQuestions2.filter(
+        (question) => question.language === null
     );
     //! Debug
     // Orderar aleatoriamente as questões
