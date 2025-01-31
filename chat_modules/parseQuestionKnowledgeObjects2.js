@@ -58,7 +58,7 @@ async function parseQuestionKnowledgeObjects2() {
     const preFilteredQuestions2 = preFilteredQuestions.filter(
         (question) => !question.knowledge_objects
     );
-    // Filtrar questões que possuem lianguage != null
+    // Filtrar questões que possuem language != null
     const filteredQuestions = preFilteredQuestions2.filter(
         (question) => question.language === null
     );
